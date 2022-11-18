@@ -9,6 +9,7 @@ import bbm.view.*;
 import java.util.Scanner;
 
 public class InstanceGetter {
+    //demo
     private static InstanceGetter single_instance = null;
     private final Scanner sc = new Scanner(System.in);
 
