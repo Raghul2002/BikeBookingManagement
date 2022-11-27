@@ -1,7 +1,5 @@
 package bbm.model;
 
-import bbm.model.account.OwnerModel;
-
 public class SoldDetails {
     private int bikeId,customerId,salesExecutiveId;
     SoldDetails(Builder builder){
@@ -41,13 +39,17 @@ public class SoldDetails {
     public int getCustomerId() {
         return customerId;
     }
+
     public int getSalesExecutiveId() {
         return salesExecutiveId;
     }
+    //    public int getSalesExecutiveId() {
+//        return salesExecutiveId;
+//    }
 
-    //Database db = new Database();
-    public static void addBookingDetails(int bikeId,int customerId){
-        SoldDetails soldDetails = SoldDetails.builder().setCustomerId(customerId).setBikeId(bikeId).setSalesExecutiveId(0).build();
-        OwnerModel.setOrderDetails(soldDetails);
-    }
+//    //Database db = new Database();
+//    public static void addBookingDetails(int bikeId,int customerId){
+//        SoldDetails soldDetails = SoldDetails.builder().setCustomerId(customerId).setBikeId(bikeId).setSalesExecutiveId(0).build();
+//        Owner.setOrderDetails(soldDetails);
+//    }
 }

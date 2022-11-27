@@ -1,10 +1,10 @@
 package bbm.model.bike;
 
-public class MBikeModel extends BikeModel {
+public class MBike extends Bike {
     private final int mileage, noOfCylinders;
     private final String engineType, displacement, coolingSystem, fuelSupply, gearBox;
 
-    public MBikeModel(Builder builder) {
+    public MBike(Builder builder) {
         super(builder);
         this.mileage = builder.mileage;
         this.noOfCylinders = builder.noOfCylinders;
@@ -19,7 +19,7 @@ public class MBikeModel extends BikeModel {
         return new Builder();
     }
 
-    public static class Builder extends BikeModel.Builder<Builder> {
+    public static class Builder extends Bike.Builder<Builder> {
         private int mileage, noOfCylinders;
         private String engineType, displacement, coolingSystem, fuelSupply, gearBox;
 
@@ -60,8 +60,8 @@ public class MBikeModel extends BikeModel {
             return this;
         }
 
-        public MBikeModel build() {
-            return new MBikeModel(this);
+        public MBike build() {
+            return new MBike(this);
         }
     }
 

@@ -1,9 +1,9 @@
 package bbm.model.bike;
 
-public class EBikeModel extends BikeModel {
+public class EBike extends Bike {
     private final int rangeEco, rangeNormal, rangeSport, motorPower, chargeTime;
 
-    public EBikeModel(Builder builder) {
+    public EBike(Builder builder) {
         super(builder);
         this.rangeEco = builder.rangeEco;
         this.rangeNormal = builder.rangeNormal;
@@ -16,7 +16,7 @@ public class EBikeModel extends BikeModel {
         return new Builder();
     }
 
-    public static class Builder extends BikeModel.Builder<Builder> {
+    public static class Builder extends Bike.Builder<Builder> {
         private int rangeEco, rangeNormal, rangeSport, motorPower, chargeTime;
 
         Builder() {
@@ -47,8 +47,8 @@ public class EBikeModel extends BikeModel {
             return this;
         }
 
-        public EBikeModel build() {
-            return new EBikeModel(this);
+        public EBike build() {
+            return new EBike(this);
         }
     }
 

@@ -1,11 +1,11 @@
 package bbm.model.bike;
 
-public class BikeModel {
+public class Bike {
     private static int id = 1;
     private final int bikeId = id;
     private int topSpeed,groundClearance,wheelBase,maxTorque,price ;
     private String bikeModel,bodyType,instrumentConsole,seatType,availabilityStatus;
-    BikeModel(Builder builder) {
+    Bike(Builder builder) {
         id++;
         this.bikeModel = builder.bikeModel;
         this.topSpeed = builder.topSpeed;
@@ -116,7 +116,7 @@ public class BikeModel {
     }
 
     public static void setId(int id) {
-        BikeModel.id = id;
+        Bike.id = id;
     }
 
     public void setTopSpeed(int topSpeed) {
