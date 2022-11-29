@@ -1,4 +1,4 @@
-package bbm.database;
+package bbm.backend;
 
 import bbm.model.SoldDetails;
 import bbm.customer.Customer;
@@ -10,18 +10,18 @@ import bbm.model.bike.MBike;
 
 import java.util.List;
 
-interface IDatabase {
+public interface IDatabase {
 
     void addOwner(Owner owner);
     void addCustomer(Customer customer);
     void addSalesExecutive(SalesExecutive salesExecutive);
     void addManager(Manager manager);
-    void addEBike(EBike eBike, Manager manager);
-    void addMBike(MBike mBike, Manager manager);
+    void addBike(EBike eBike, Manager manager);
+    void addBike(MBike mBike, Manager manager);
     void removeSalesExecutive(SalesExecutive salesExecutive);
     void removeManager(Manager manager);
-    void removeMBike(EBike eBike);
-    void removeEBike(MBike mBike);
+    void removeBike(EBike eBike,Manager manager);
+    void removeBike(MBike mBike,Manager manager);
     List<Customer> getCustomerList();
     List<SalesExecutive> getSalesExecutiveList();
     List<Manager> getManagerList();
