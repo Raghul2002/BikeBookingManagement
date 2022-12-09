@@ -1,7 +1,7 @@
 package bbm.model;
 
-import bbm.manager.Manager;
-import bbm.salesExecutive.SalesExecutive;
+import bbm.model.account.Manager;
+import bbm.model.account.SalesExecutive;
 
 public interface IUserAdministrator {
     void addUser(Manager manager);

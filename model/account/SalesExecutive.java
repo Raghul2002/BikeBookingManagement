@@ -1,9 +1,7 @@
-package bbm.salesExecutive;
+package bbm.model.account;
 
 import bbm.model.IPersonalAdministrator;
 import bbm.model.account.User;
-
-import java.util.List;
 
 public class SalesExecutive extends User implements IPersonalAdministrator {
     private static int SEId = 1;

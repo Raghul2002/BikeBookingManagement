@@ -1,4 +1,4 @@
-package bbm.manager;
+package bbm.model.account;
 
 import bbm.model.IBikeAdministrator;
 import bbm.model.IPersonalAdministrator;

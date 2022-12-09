@@ -1,10 +1,10 @@
-package bbm.backend;
+package bbm.database;
 
 import bbm.model.SoldDetails;
-import bbm.customer.Customer;
-import bbm.owner.Owner;
-import bbm.salesExecutive.SalesExecutive;
-import bbm.manager.Manager;
+import bbm.model.account.Customer;
+import bbm.model.account.Owner;
+import bbm.model.account.SalesExecutive;
+import bbm.model.account.Manager;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 

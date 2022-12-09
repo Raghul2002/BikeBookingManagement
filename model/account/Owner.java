@@ -1,12 +1,9 @@
-package bbm.owner;
+package bbm.model.account;
 
-import bbm.backend.Database;
-import bbm.backend.IDatabase;
-import bbm.manager.Manager;
+import bbm.database.Database;
+import bbm.database.IDatabase;
 import bbm.model.IPersonalAdministrator;
 import bbm.model.IUserAdministrator;
-import bbm.model.account.User;
-import bbm.salesExecutive.SalesExecutive;
 
 public class Owner extends User implements IUserAdministrator, IPersonalAdministrator{
     public Owner(String firstName, String lastName, String userName, String password, String emailId, long phoneNo) {
@@ -30,16 +27,16 @@ public class Owner extends User implements IUserAdministrator, IPersonalAdminist
 
     @Override
     public void addUser(SalesExecutive salesExecutive) {
-
+        db.addSalesExecutive(salesExecutive);
     }
 
     @Override
     public void removeUser(Manager manager) {
-
+        db.removeManager(manager);
     }
 
     @Override
     public void removeUser(SalesExecutive salesExecutive) {
-
+        db.removeSalesExecutive(salesExecutive);
     }
 }

@@ -1,4 +1,4 @@
-package bbm.customer;
+package bbm.model.account;
 
 
 import bbm.model.IPersonalAdministrator;

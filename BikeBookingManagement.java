@@ -1,5 +1,6 @@
 package bbm;
 
+import bbm.model.IPortal;
 import bbm.owner.OwnerView;
 
 import java.util.Scanner;
@@ -12,9 +13,8 @@ public class BikeBookingManagement {
             System.out.println("Enter number :");
             switch (sc.nextLine()) {
                 case "1":
-                    OwnerView ownerView = new OwnerView();
-                    ownerView.set();
-                    //instanceGetter.getOwnerController().ownerPortal();
+                    IPortal ownerView = new OwnerView();
+                    ownerView.viewPortal();
                     break;
                 case "2":
                     //instanceGetter.getManagerController().managerPortal();
@@ -38,10 +38,6 @@ public class BikeBookingManagement {
     }
     public static void main(){
         BikeBookingManagement bikeBookingManagement = new BikeBookingManagement();
-        try {
             bikeBookingManagement.mainLoop();
-        } catch (Exception e) {
-            System.out.println("Exception : " + e);
-        }
     }
 }
