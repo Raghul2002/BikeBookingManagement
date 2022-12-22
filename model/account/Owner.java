@@ -2,8 +2,8 @@ package bbm.model.account;
 
 import bbm.database.Database;
 import bbm.database.IDatabase;
-import bbm.model.IPersonalAdministrator;
-import bbm.model.IUserAdministrator;
+import bbm.model.interfaces.IPersonalAdministrator;
+import bbm.model.interfaces.IUserAdministrator;
 
 public class Owner extends User implements IUserAdministrator, IPersonalAdministrator{
     public Owner(String firstName, String lastName, String userName, String password, String emailId, long phoneNo) {
@@ -39,4 +39,5 @@ public class Owner extends User implements IUserAdministrator, IPersonalAdminist
     public void removeUser(SalesExecutive salesExecutive) {
         db.removeSalesExecutive(salesExecutive);
     }
+
 }

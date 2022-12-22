@@ -1,8 +1,7 @@
 package bbm.model.account;
 
 
-import bbm.model.IPersonalAdministrator;
-import bbm.model.account.User;
+import bbm.model.interfaces.IPersonalAdministrator;
 
 public class Customer extends User implements IPersonalAdministrator {
     private static int cId = 1;

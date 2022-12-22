@@ -1,12 +1,9 @@
 package bbm;
 
-import bbm.model.IEncryption;
-import bbm.model.account.User;
+import bbm.model.interfaces.IEncryption;
 import bbm.model.encryption.Encryption;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Registrar {
     Scanner sc = new Scanner(System.in);
@@ -53,12 +50,19 @@ public class Registrar {
         details.add(password);
         return details;
     }
-    public String getSignUpDetails() {
+    public HashMap<String,Object> getSignUpDetails() {
+        HashMap<String,Object> details=new HashMap<>();
         getFirstNameDetails();
         getLastNameDetails();
         getSignInDetails();
         getEmailIdDetails();
         getPhoneNoDetails();
-        return firstName+"$"+lastName+"$"+userName+"$"+password+"$"+emailId+"$"+phoneNo;
+        details.put("firstName",firstName);
+        details.put("lastName",lastName);
+        details.put("userName",userName);
+        details.put("password",password);
+        details.put("emailId",emailId);
+        details.put("phoneNo",phoneNo);
+        return details;
     }
 }

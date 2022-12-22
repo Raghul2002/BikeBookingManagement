@@ -7,10 +7,10 @@ import java.util.List;
 
 public class OwnerAuthenticator implements IUserAuthentication{
     List<Owner> ownerList = db.getOwnerList();
-    public User authenticate(User account){
-        for (User i : ownerList)
-            if( i.getUserName().equals(account.getUserName()) && i.getPassword().equals(account.getPassword()))
+    public User authenticate(List<String> loginCredentials){
+        for (Owner i : ownerList)
+            if( i.getUserName().equals(loginCredentials.get(0)) && i.getPassword().equals(loginCredentials.get(1)))
                 return i;
-        return account;
+        return null;
     }
 }

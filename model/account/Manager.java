@@ -1,8 +1,7 @@
 package bbm.model.account;
 
-import bbm.model.IBikeAdministrator;
-import bbm.model.IPersonalAdministrator;
-import bbm.model.account.User;
+import bbm.model.interfaces.IBikeAdministrator;
+import bbm.model.interfaces.IPersonalAdministrator;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 

@@ -8,10 +8,10 @@ import java.util.List;
 public class CustomerAuthenticator implements IUserAuthentication{
     List<Customer> customerList = db.getCustomerList();
     @Override
-    public User authenticate(User account){
+    public User authenticate(List<String> loginCredentials){
         for (Customer i : customerList)
-            if( i.getUserName().equals(account.getUserName()) && i.getPassword().equals(account.getPassword()))
+            if( i.getUserName().equals(loginCredentials.get(0)) && i.getPassword().equals(loginCredentials.get(1)))
                 return i;
-        return account;
+        return null;
     }
 }

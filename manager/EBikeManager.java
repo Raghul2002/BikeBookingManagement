@@ -1,6 +1,6 @@
 package bbm.manager;
 
-import bbm.model.IBikeManager;
+import bbm.model.interfaces.IBikeManager;
 
 public class EBikeManager implements IBikeManager {
     @Override

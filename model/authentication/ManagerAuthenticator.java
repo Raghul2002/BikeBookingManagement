@@ -8,10 +8,10 @@ import java.util.List;
 public class ManagerAuthenticator implements IUserAuthentication {
     List<Manager> managerList = db.getManagerList();
     @Override
-    public User authenticate(User account) {
+    public User authenticate(List<String> loginCredentials) {
         for (Manager i : managerList)
-            if (i.getUserName().equals(account.getUserName()) && i.getPassword().equals(account.getPassword()))
+            if (i.getUserName().equals(loginCredentials.get(0)) && i.getPassword().equals(loginCredentials.get(1)))
                 return i;
-        return account;
+        return null;
     }
 }

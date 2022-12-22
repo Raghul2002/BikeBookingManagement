@@ -1,6 +1,6 @@
 package bbm.model.encryption;
 
-import bbm.model.IEncryption;
+import bbm.model.interfaces.IEncryption;
 public class Encryption implements IEncryption {
     public String encryptPassword(String pw){
         StringBuilder password = new StringBuilder();
