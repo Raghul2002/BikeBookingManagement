@@ -2,6 +2,7 @@ package bbm.owner;
 
 import bbm.database.Database;
 import bbm.database.IDatabase;
+import bbm.model.account.Customer;
 import bbm.model.account.Manager;
 import bbm.model.account.Owner;
 import bbm.model.account.SalesExecutive;
@@ -32,7 +33,7 @@ public class OwnerController {
         owner.addUser(salesExecutive);
     }
 
-    public boolean removeManger(Owner owner,int id) {
+    protected boolean removeManger(Owner owner,int id) {
         List <Manager> managerList = db.getManagerList();
         for (Manager i : managerList) {
             if( i.getManagerId() == id){
@@ -42,7 +43,7 @@ public class OwnerController {
         }
         return false;
     }
-    public boolean removeSalesExecutive(Owner owner,int id) {
+    protected boolean removeSalesExecutive(Owner owner,int id) {
         List <SalesExecutive> salesExecutiveList = db.getSalesExecutiveList();
         for (SalesExecutive i : salesExecutiveList) {
             if( i.getSalesExecutiveId() == id){
@@ -53,7 +54,13 @@ public class OwnerController {
         return false;
     }
 
-    public void showManagerDetails(Owner owner) {
-
+    protected List<Manager> getManagerList() {
+        return db.getManagerList();
+    }
+    protected List<SalesExecutive> getSalesExecutiveList() {
+        return db.getSalesExecutiveList();
+    }
+    protected List<Customer> getCustomerList() {
+        return db.getCustomerList();
     }
 }

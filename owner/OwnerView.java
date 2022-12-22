@@ -2,10 +2,10 @@ package bbm.owner;
 
 import bbm.Registrar;
 
-import bbm.model.account.Owner;
-import bbm.model.account.User;
+import bbm.model.account.*;
 import bbm.model.interfaces.IPortal;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class OwnerView implements IPortal {
@@ -13,6 +13,8 @@ public class OwnerView implements IPortal {
 
     public void viewPortal(User user) {
         Registrar registrar = new Registrar();
+        BikeAdministrator bikeAdministrator = new BikeAdministrator();
+        OwnerAdministrator ownerAdministrator = new OwnerAdministrator();
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------Welcome to Owner Portal---------------------------");
         Owner owner = (Owner) user;
@@ -26,43 +28,61 @@ public class OwnerView implements IPortal {
                     break;
                 case "2":
                     System.out.println("Enter Sales Executive Details :");
-                    ownerController.addSalesExecutive(owner,registrar.getSignUpDetails());
+                    ownerController.addSalesExecutive(owner, registrar.getSignUpDetails());
                     break;
                 case "3":
                     System.out.println("Enter manager id you want to remove :");
-                    if (ownerController.removeManger(owner,sc.nextInt()))
+                    if (ownerController.removeManger(owner, sc.nextInt()))
                         System.out.println("Successfully Removed");
                     else
                         System.out.println("Failed, Enter valid Manager Id !");
                     break;
                 case "4":
                     System.out.println("Enter Sales Executive id you want to remove :");
-                    if (ownerController.removeSalesExecutive(owner,sc.nextInt()))
+                    if (ownerController.removeSalesExecutive(owner, sc.nextInt()))
                         System.out.println("Successfully Removed");
                     else
                         System.out.println("Failed, Enter valid Manager Id !");
                     break;
-                    case "5":
-                        ownerController.showManagerDetails(owner);
-                        break;
-//                    case "6":
-//                        salesExecutiveView.showSalesExecutiveDetails(OwnerModel.getSalesExecutiveList());
-//                        break;
-//                    case "7":
-//                        customerView.showCustomerDetails(OwnerModel.getCustomerList());
-//                        break;
-//                    case "8":
-//                        bikeView.showBikeDetails();
-//                        break;
+                case "5":
+                    List<Manager> managerList = ownerController.getManagerList();
+                    if (!managerList.isEmpty()) {
+                        System.out.println("Manager Details :");
+                        for (Manager i : managerList) {
+                            System.out.println(i);
+                        }
+                    } else System.out.println("Sorry !!\nCurrently no managers registered");
+                    break;
+                case "6":
+                    List<SalesExecutive> salesExecutiveList = ownerController.getSalesExecutiveList();
+                    if (!salesExecutiveList.isEmpty()) {
+                        System.out.println("Manager Details :");
+                        for (SalesExecutive i : salesExecutiveList) {
+                            System.out.println(i);
+                        }
+                    } else System.out.println("Sorry !!\nCurrently no sales executive registered");
+                    break;
+                case "7":
+                    List<Customer> customerList = ownerController.getCustomerList();
+                    if (!customerList.isEmpty()) {
+                        System.out.println("Manager Details :");
+                        for (Customer i : customerList) {
+                            System.out.println(i);
+                        }
+                    } else System.out.println("Sorry !!\nCurrently no customer registered");
+                    break;
+                case "8":
+                    bikeAdministrator.showBike();
+                    break;
 //                    case "9":
 //                        soldDetailsView.viewSoldOrders();
 //                        break;
-//                    case "10":
-//                        ownerView.showPersonalDetail(owner);
-//                        break;
-//                    case "11":
-//                        bikeView.showSoldBikeDetails(owner);
-//                        break;
+                case "10":
+                    ownerAdministrator.showPersonalDetail(owner);
+                    break;
+                case "11":
+                    bikeAdministrator.showSoldBikes();
+                    break;
                 case "12":
                     break whileLoop;
                 default:
