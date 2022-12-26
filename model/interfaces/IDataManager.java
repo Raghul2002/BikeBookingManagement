@@ -1,4 +1,4 @@
-package bbm.database;
+package bbm.model.interfaces;
 
 import bbm.model.SoldDetails;
 import bbm.model.account.Customer;
@@ -10,20 +10,21 @@ import bbm.model.bike.MBike;
 
 import java.util.List;
 
-public interface IDatabase {
+public interface IDataManager {
     void addUser(Owner owner);
     void addUser(Customer customer);
-    void addUser(SalesExecutive salesExecutive);
-    void addUser(Manager manager);
-    void addBike(EBike eBike);
-    void addBike(MBike mBike);
-    void removeUser(SalesExecutive salesExecutive);
-    void removeUser(Manager manager);
 
+    void addUser(Manager manager);
+    void addUser(SalesExecutive salesExecutive);
+
+    void removeUser(Manager manager);
+    void removeUser(SalesExecutive salesExecutive);
     void removeUser(Owner owner);
     void removeUser(Customer customer);
-    void removeBike(EBike eBike);
-    void removeBike(MBike mBike);
+    void addBike(EBike eBike, Manager manager);
+    void addBike(MBike mBike, Manager manager);
+    void removeBike(EBike eBike,Manager manager);
+    void removeBike(MBike mBike,Manager manager);
     List<Customer> getCustomerList();
     List<SalesExecutive> getSalesExecutiveList();
     List<Manager> getManagerList();
@@ -33,5 +34,4 @@ public interface IDatabase {
     void addOrderDetails(SoldDetails soldDetails);
     List<SoldDetails> getSoldDetailsList();
     void setBooking(SoldDetails soldDetails,int indexNo);
-
 }

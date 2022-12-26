@@ -1,6 +1,7 @@
-package bbm.owner;
+package bbm.utility;
 
 import bbm.database.Database;
+import bbm.model.account.Owner;
 import bbm.model.bike.BikeStatus;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
@@ -8,7 +9,7 @@ import bbm.model.bike.MBike;
 import java.util.List;
 
 
-public class BikeAdministrator {
+public class UtilBikeView {
     public void mBikeHeader() {
         mBikeDivider();
         System.out.printf("|%7s |%15s |%15s |%20s |%15s |%15s |%15s |%15s |%20s |%15s |%15s |%15s |%16s |%15s |%15s |%15s |%15s |%15s |\n", "Bike Id", "BIke Model", "TopSpeed", "Ground Clearance", " WheelBase ", "MaxTorque", "Price", "Body Type", "Instrument_Console", "Seat Type", "mileage", "noOfCylinders", "Engine Type", "Displacement", "Cooling System", "Fuel Supply", "Gear Box", "Availability");
@@ -68,7 +69,7 @@ public class BikeAdministrator {
         String bikeStatus = BikeStatus.AVAILABLE.toString();
         showBike(bikeStatus);
     }
-    protected void showSoldBikes() {
+    public void showSoldBikes(Owner owner) {
         String bikeStatus = BikeStatus.SOLD.toString();
         showBike(bikeStatus);
 

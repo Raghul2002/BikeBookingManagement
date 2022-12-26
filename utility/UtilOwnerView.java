@@ -1,8 +1,8 @@
-package bbm.owner;
+package bbm.utility;
 
 import bbm.model.account.Owner;
 
-public class OwnerAdministrator {
+public class UtilOwnerView {
     private static void ownerHeader(){
         divider();
         System.out.printf("|%15s |%15s |%15s |%20s |%15s |\n","First Name","Last Name","User Name","Email Id","Phone No");
@@ -14,7 +14,7 @@ public class OwnerAdministrator {
     private static void divider(){
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
     }
-    protected void showPersonalDetail(Owner account){
+    public void showPersonalDetail(Owner account){
         ownerHeader();
         printOwner(account);
         divider();

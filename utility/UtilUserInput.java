@@ -1,11 +1,13 @@
-package bbm;
+package bbm.utility;
 
+import bbm.model.account.Owner;
+import bbm.model.account.User;
 import bbm.model.interfaces.IEncryption;
 import bbm.model.encryption.Encryption;
 
 import java.util.*;
 
-public class Registrar {
+public class UtilUserInput {
     Scanner sc = new Scanner(System.in);
     private String firstName,lastName, userName, password,emailId;
     private static long phoneNo;
@@ -64,5 +66,9 @@ public class Registrar {
         details.put("emailId",emailId);
         details.put("phoneNo",phoneNo);
         return details;
+    }
+    public Owner getOwnerSignUpDetails(){
+        getSignUpDetails();
+        return new Owner(firstName,lastName,userName,password,emailId,phoneNo);
     }
 }

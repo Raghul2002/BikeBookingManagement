@@ -1,6 +1,8 @@
 package bbm.owner;
 
-import bbm.Registrar;
+import bbm.utility.UtilBikeView;
+import bbm.utility.UtilOwnerView;
+import bbm.utility.UtilUserInput;
 
 import bbm.model.account.*;
 import bbm.model.interfaces.IPortal;
@@ -10,12 +12,13 @@ import java.util.Scanner;
 
 public class OwnerView implements IPortal {
     OwnerController ownerController = new OwnerController();
+    UtilUserInput utilUserInput = new UtilUserInput();
+    UtilBikeView utilBikeView = new UtilBikeView();
+    UtilOwnerView utilOwnerView = new UtilOwnerView();
+    Scanner sc = new Scanner(System.in);
 
     public void viewPortal(User user) {
-        Registrar registrar = new Registrar();
-        BikeAdministrator bikeAdministrator = new BikeAdministrator();
-        OwnerAdministrator ownerAdministrator = new OwnerAdministrator();
-        Scanner sc = new Scanner(System.in);
+
         System.out.println("--------------------Welcome to Owner Portal---------------------------");
         Owner owner = (Owner) user;
         whileLoop:
@@ -24,11 +27,11 @@ public class OwnerView implements IPortal {
             switch (sc.nextLine()) {
                 case "1":
                     System.out.println("Enter Manager Details :");
-                    ownerController.addManager(owner, registrar.getSignUpDetails());
+                    ownerController.addManager(owner, utilUserInput.getSignUpDetails());
                     break;
                 case "2":
                     System.out.println("Enter Sales Executive Details :");
-                    ownerController.addSalesExecutive(owner, registrar.getSignUpDetails());
+                    ownerController.addSalesExecutive(owner, utilUserInput.getSignUpDetails());
                     break;
                 case "3":
                     System.out.println("Enter manager id you want to remove :");
@@ -72,16 +75,16 @@ public class OwnerView implements IPortal {
                     } else System.out.println("Sorry !!\nCurrently no customer registered");
                     break;
                 case "8":
-                    bikeAdministrator.showBike();
+                    utilBikeView.showBike();
                     break;
 //                    case "9":
 //                        soldDetailsView.viewSoldOrders();
 //                        break;
                 case "10":
-                    ownerAdministrator.showPersonalDetail(owner);
+                    utilOwnerView.showPersonalDetail(owner);
                     break;
                 case "11":
-                    bikeAdministrator.showSoldBikes();
+                    utilBikeView.showSoldBikes(owner);
                     break;
                 case "12":
                     break whileLoop;

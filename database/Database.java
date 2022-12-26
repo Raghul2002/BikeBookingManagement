@@ -30,47 +30,58 @@ public class Database implements IDatabase {
     final private List<MBike> mBikeList = new ArrayList<>();
     final private List<SoldDetails> soldDetailsList = new ArrayList<>();
 
-    public void addOwner(Owner owner) {
+
+    public void addUser(Owner owner) {
         ownerList.add(owner);
     }
 
-    public void addCustomer(Customer customer) {
+    public void addUser(Customer customer) {
         customerList.add(customer);
     }
 
-    public void addSalesExecutive(SalesExecutive salesExecutive) {
+    public void addUser(SalesExecutive salesExecutive) {
         salesExecutiveList.add(salesExecutive);
     }
 
-    public void addManager(Manager manager) {
+    public void addUser(Manager manager) {
         managerList.add(manager);
     }
 
-    public void addBike(EBike eBike, Manager manager) {
+    public void addBike(EBike eBike) {
         eBikeList.add(eBike);
     }
 
-    public void addBike(MBike mBike, Manager manager) {
+    public void addBike(MBike mBike) {
         mBikeList.add(mBike);
     }
 
-    public void removeSalesExecutive(SalesExecutive salesExecutive) {
+    public void removeUser(SalesExecutive salesExecutive) {
         salesExecutiveList.remove(salesExecutive);
     }
 
-    public void removeManager(Manager manager) {
+    public void removeUser(Manager manager) {
 
         managerList.remove(manager);
     }
 
     @Override
-    public void removeBike(EBike eBike, Manager manager) {
+    public void removeUser(Owner owner) {
+        ownerList.remove(owner);
+    }
+
+    @Override
+    public void removeUser(Customer customer) {
+        customerList.remove(customer);
+    }
+
+    @Override
+    public void removeBike(EBike eBike) {
         eBikeList.remove(eBike);
 
     }
 
     @Override
-    public void removeBike(MBike mBike, Manager manager) {
+    public void removeBike(MBike mBike) {
         mBikeList.remove(mBike);
     }
 

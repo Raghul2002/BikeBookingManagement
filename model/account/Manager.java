@@ -5,7 +5,7 @@ import bbm.model.interfaces.IPersonalAdministrator;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 
-public class Manager extends User implements IPersonalAdministrator, IBikeAdministrator {
+public class Manager extends User  {
     private static int mId = 1;
     private final int managerId = mId;
 
@@ -17,32 +17,4 @@ public class Manager extends User implements IPersonalAdministrator, IBikeAdmini
         return managerId;
     }
 
-    @Override
-    public void editDetails() {
-        System.out.println("Edit");
-    }
-    @Override
-    public void printDetails() {
-        System.out.println("print");
-    }
-
-    @Override
-    public void addBike(MBike Bike) {
-        System.out.println("BIke Added");
-    }
-
-    @Override
-    public void addBike(EBike Bike) {
-
-    }
-
-    @Override
-    public void removeBike(MBike bike) {
-
-    }
-
-    @Override
-    public void removeBike(EBike bike) {
-
-    }
 }
