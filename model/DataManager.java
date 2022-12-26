@@ -35,12 +35,11 @@ public class DataManager implements IDataManager {
 
     @Override
     public void addBike(EBike eBike, Manager manager) {
-         db.addBike(eBike);
+        db.addBike(eBike);
     }
 
     @Override
     public void addBike(MBike mBike, Manager manager) {
-        System.out.println("HIII");
         db.addBike(mBike);
     }
 

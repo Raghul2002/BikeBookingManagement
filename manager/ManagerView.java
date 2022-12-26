@@ -8,8 +8,8 @@ public class ManagerView {
     Scanner sc = new Scanner(System.in);
     UtilBikeInput bikeInput = new UtilBikeInput();
     BikeManagerController bikeManager = new BikeManagerController();
-    EBikeManagerController mBikeManager = new EBikeManagerController();
-    MBikeManagerController eBikeManager = new MBikeManagerController();
+    EBikeManagerController eBikeManager = new EBikeManagerController();
+    MBikeManagerController mBikeManager = new MBikeManagerController();
     public void viewPortal(Manager manager) {
         System.out.println("--------------------Welcome to manager Portal---------------------------");
         whileLoop:
@@ -46,7 +46,7 @@ public class ManagerView {
                         case "2":
                             System.out.println("Enter Electrical bike id to remove :");
                             if (eBikeManager.removeBike(sc.nextInt(), manager))
-                                System.out.println("Mechanical Bike successfully removed");
+                                System.out.println("Electric Bike successfully removed");
                             else System.out.println("The Electrical Bike Id you entered does not exist");
                             break;
                         default:

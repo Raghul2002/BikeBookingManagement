@@ -17,12 +17,10 @@ public class MBikeManagerController implements IBikeManager {
     @Override
     public boolean addBike(Bike bike, Manager manager) {
         if(bike instanceof MBike) {
-            System.out.println("HII");
             dataManager.addBike((MBike) bike, manager);
             return true;
         }
-        else
-            return false;
+        return false;
     }
 
     @Override
