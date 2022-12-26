@@ -1,16 +1,11 @@
 package bbm;
 
+import bbm.customer.CustomerView;
 import bbm.database.Database;
 import bbm.database.IDatabase;
 import bbm.manager.ManagerView;
-import bbm.model.account.Manager;
-import bbm.model.account.Owner;
-import bbm.model.account.SalesExecutive;
-import bbm.model.account.User;
-import bbm.model.authentication.IUserAuthentication;
-import bbm.model.authentication.ManagerAuthenticator;
-import bbm.model.authentication.OwnerAuthenticator;
-import bbm.model.authentication.SalesExecutiveAuthenticator;
+import bbm.model.account.*;
+import bbm.model.authentication.*;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 import bbm.model.interfaces.IPortal;
@@ -68,7 +63,21 @@ public class BikeBookingManagement {
                     }
                     break;
                 case "4":
-                    //instanceGetter.getCustomerController().customerPortal();
+                    System.out.println("1.Sign Up\n2.Sign In");
+                    switch (sc.nextLine()) {
+                        case "1":
+                            utilUserInput.getSignUpDetails();
+                        case "2":
+                            loginCredentials = utilUserInput.getSignInDetails();
+                            authentication = new CustomerAuthenticator();
+                            user = authentication.authenticate(loginCredentials);
+                            if(user instanceof Customer) {
+                                CustomerView customerView = new CustomerView();
+                                customerView.viewPortal((Customer)user);
+                            }
+                        default:
+                            System.out.println("Enter valid number!!");
+                    }
                     break;
                 case "5":
                     System.out.println("Console Closing !!!");

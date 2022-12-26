@@ -3,13 +3,14 @@ package bbm.manager;
 import bbm.model.DataManager;
 import bbm.model.account.Manager;
 import bbm.model.bike.Bike;
+import bbm.model.bike.BikeStatus;
 import bbm.model.bike.MBike;
 import bbm.model.interfaces.IBikeManager;
 import bbm.utility.UtilBikeView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class MBikeManagerController implements IBikeManager {
     DataManager dataManager = new DataManager();
@@ -40,6 +41,17 @@ public class MBikeManagerController implements IBikeManager {
         for(MBike bike:mBikeList){
             if(bike.getAvailabilityStatus().equals( bikeStatus))
                 mBikes.add(bike);
+        }
+        bikeView.printMBikeList(mBikes);
+    }
+
+    @Override
+    public void compareBike(int bikeId1, int bikeId2) {
+        List<MBike> mBikeList = dataManager.getMBikeList();
+        List<MBike> mBikes = new ArrayList<>();
+        for (MBike i : mBikeList) {
+            if (i.getAvailabilityStatus().equals(BikeStatus.AVAILABLE.toString()) && (i.getBikeId() == bikeId1 || i.getBikeId() == bikeId2))
+                mBikes.add(i);
         }
         bikeView.printMBikeList(mBikes);
     }

@@ -80,7 +80,7 @@ public class OwnerView implements IPortal {
                     bikeManager.viewAvailableBike();
                     break;
                 case "9":
-                    bikeManager.viewSoldBike(owner);
+                    //bikeManager.viewSoldBike(owner);
                     break;
                 case "10":
                     utilOwnerView.showPersonalDetail(owner);

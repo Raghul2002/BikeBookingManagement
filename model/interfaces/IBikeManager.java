@@ -8,4 +8,5 @@ public interface IBikeManager {
     boolean addBike(Bike bike, Manager manager);
     boolean removeBike(int bikeId,Manager manager);
     void viewBike(String bikeStatus);
+    void compareBike(int bikeId1,int bikeId2);
 }
