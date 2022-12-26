@@ -1,8 +1,5 @@
 package bbm.utility;
 
-import bbm.database.Database;
-import bbm.model.account.Owner;
-import bbm.model.bike.BikeStatus;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 
@@ -10,68 +7,58 @@ import java.util.List;
 
 
 public class UtilBikeView {
-    public void mBikeHeader() {
+    private void mBikeHeader() {
         mBikeDivider();
         System.out.printf("|%7s |%15s |%15s |%20s |%15s |%15s |%15s |%15s |%20s |%15s |%15s |%15s |%16s |%15s |%15s |%15s |%15s |%15s |\n", "Bike Id", "BIke Model", "TopSpeed", "Ground Clearance", " WheelBase ", "MaxTorque", "Price", "Body Type", "Instrument_Console", "Seat Type", "mileage", "noOfCylinders", "Engine Type", "Displacement", "Cooling System", "Fuel Supply", "Gear Box", "Availability");
         mBikeDivider();
     }
 
-    public void eBikeHeader() {
+    private void eBikeHeader() {
         eBikeDivider();
         System.out.printf("|%7s |%15s |%15s |%20s |%15s |%15s |%15s |%15s |%20s |%15s |%15s |%15s |%15s |%15s |%15s |%15s |\n", "Bike Id", "BIke Model", "TopSpeed", "Ground_Clearance", " WheelBase ", "MaxTorque", "Price", "Body Type", "Instrument_Console", "Seat Type", "rangeEco", "rangeNormal", "rangeSport", "motorPower", "chargeTime", "Availability");
         eBikeDivider();
     }
 
-    public void mBikeDivider() {
+    private void mBikeDivider() {
         System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     }
 
-    public void eBikeDivider() {
+    private void eBikeDivider() {
         System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     }
 
-    public void printMBike(MBike mBike) {
+    private void printMBike(MBike mBike) {
         System.out.printf("|%7d |%15s |%15d |%20s |%15d |%15d |%15d |%15s |%20s |%15s |%15d |%15d |%16s |%15s |%15s |%15s |%15s |%15s |\n", mBike.getBikeId(), mBike.getBikeModel(), mBike.getTopSpeed(), mBike.getGroundClearance(), mBike.getWheelBase(), mBike.getMaxTorque(), mBike.getPrice(), mBike.getBodyType(), mBike.getInstrumentConsole(), mBike.getSeatType(), mBike.getMileage(), mBike.getNoOfCylinders(), mBike.getEngineType(), mBike.getDisplacement(), mBike.getCoolingSystem(), mBike.getFuelSupply(), mBike.getGearBox(), mBike.getAvailabilityStatus());
     }
 
-    public void printEBike(EBike eBike) {
+    private void printEBike(EBike eBike) {
         System.out.printf("|%7d |%15s |%15d |%20s |%15d |%15d |%15d |%15s |%20s |%15s |%15d |%15d |%15d |%15d |%15s |%15s |\n", eBike.getBikeId(), eBike.getBikeModel(), eBike.getTopSpeed(), eBike.getGroundClearance(), eBike.getWheelBase(), eBike.getMaxTorque(), eBike.getPrice(), eBike.getBodyType(), eBike.getInstrumentConsole(), eBike.getSeatType(), eBike.getRangeEco(), eBike.getRangeNormal(), eBike.getRangeSport(), eBike.getMotorPower(), eBike.getChargeTime(), eBike.getAvailabilityStatus());
     }
-    Database db = Database.getInstance();
-    private void showBike(String bikeStatus){
-        boolean flag = false;
-        List <MBike> mBikeList = db.getMBikeList();
-        List <EBike> eBikeList = db.getEBikeList();
-        if (!mBikeList.isEmpty()) {
+
+
+    public void printMBikeList(List<MBike> mBikeList) {
+        if (mBikeList.isEmpty())
+            System.out.println("Sorry Currently no Mechanical bike available");
+        else {
             System.out.println("Mechanical Bike :");
             mBikeHeader();
             for (MBike i : mBikeList) {
-                if (i.getAvailabilityStatus().equals(bikeStatus))
-                    printMBike(i);
+                printMBike(i);
             }
             mBikeDivider();
-            flag = true;
         }
-        if (!eBikeList.isEmpty()) {
+    }
+
+    public void printEBikeList(List<EBike> eBikeList) {
+        if (eBikeList.isEmpty())
+            System.out.println("Sorry Currently no Electric bike available");
+        else {
             System.out.println("\nElectric Bike :");
             eBikeHeader();
             for (EBike i : eBikeList) {
-                if (i.getAvailabilityStatus().equals(bikeStatus))
-                    printEBike(i);
+                printEBike(i);
             }
             eBikeDivider();
-            flag = true;
         }
-        if (!flag)
-            System.out.println("Sorry Currently no bikes available");
-    }
-    public void showBike() {
-        String bikeStatus = BikeStatus.AVAILABLE.toString();
-        showBike(bikeStatus);
-    }
-    public void showSoldBikes(Owner owner) {
-        String bikeStatus = BikeStatus.SOLD.toString();
-        showBike(bikeStatus);
-
     }
 }

@@ -1,8 +1,7 @@
 package bbm.salesExecutive;
 
-import bbm.database.Database;
-import bbm.database.IDatabase;
+import bbm.model.DataManager;
 
 public class SalesExecutiveController {
-    IDatabase db = Database.getInstance();
+    DataManager dataManager = new DataManager();
 }

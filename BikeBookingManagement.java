@@ -5,12 +5,17 @@ import bbm.database.IDatabase;
 import bbm.manager.ManagerView;
 import bbm.model.account.Manager;
 import bbm.model.account.Owner;
+import bbm.model.account.SalesExecutive;
 import bbm.model.account.User;
 import bbm.model.authentication.IUserAuthentication;
 import bbm.model.authentication.ManagerAuthenticator;
 import bbm.model.authentication.OwnerAuthenticator;
+import bbm.model.authentication.SalesExecutiveAuthenticator;
+import bbm.model.bike.EBike;
+import bbm.model.bike.MBike;
 import bbm.model.interfaces.IPortal;
 import bbm.owner.OwnerView;
+import bbm.salesExecutive.SalesExecutiveView;
 import bbm.utility.UtilUserInput;
 
 import java.util.List;
@@ -20,8 +25,12 @@ import java.util.Scanner;
 public class BikeBookingManagement {
     static {
         IDatabase db = Database.getInstance();
-        db.addUser(new Manager("m","m","m","m","@gmail",3456234234l));
-        db.addUser(new Owner("m","m","o","t","@gmail",3456234234l));
+        db.addUser(new Manager("m","m","m","r","@gmail",3456234234L));
+        db.addUser(new Owner("m","m","o","t","@gmail", 3456234234L));
+//        db.addBike(new MBike(1,2,3,4,5,"1","2","3","4",5,1,"2","3","4","5","3"));
+//        db.addBike(new MBike(1,2,3,4,5,"1","2","3","4",5,1,"2","3","4","5","3"));
+        db.addBike(new EBike(5,4,3,2,1,"5","4", "3","2",1,5,4,3,2));
+        db.addBike(new EBike(5,4,3,2,1,"5","4", "3","2",1,5,4,3,2));
     }
     private void mainLoop() {
         try {
@@ -51,7 +60,13 @@ public class BikeBookingManagement {
                     }
                     break;
                 case "3":
-                    //instanceGetter.getSalesExecutiveController().salesExecutivePortal();
+                    loginCredentials = utilUserInput.getSignInDetails();
+                    authentication = new SalesExecutiveAuthenticator();
+                    user = authentication.authenticate(loginCredentials);
+                    if(user instanceof SalesExecutive) {
+                        SalesExecutiveView salesExecutiveView = new SalesExecutiveView();
+                        salesExecutiveView.viewPortal((SalesExecutive)user);
+                    }
                     break;
                 case "4":
                     //instanceGetter.getCustomerController().customerPortal();

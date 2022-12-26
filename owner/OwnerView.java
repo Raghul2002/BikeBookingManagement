@@ -1,5 +1,6 @@
 package bbm.owner;
 
+import bbm.manager.BikeManagerController;
 import bbm.utility.UtilBikeView;
 import bbm.utility.UtilOwnerView;
 import bbm.utility.UtilUserInput;
@@ -15,6 +16,7 @@ public class OwnerView implements IPortal {
     UtilUserInput utilUserInput = new UtilUserInput();
     UtilBikeView utilBikeView = new UtilBikeView();
     UtilOwnerView utilOwnerView = new UtilOwnerView();
+    BikeManagerController bikeManager = new BikeManagerController();
     Scanner sc = new Scanner(System.in);
 
     public void viewPortal(User user) {
@@ -75,16 +77,16 @@ public class OwnerView implements IPortal {
                     } else System.out.println("Sorry !!\nCurrently no customer registered");
                     break;
                 case "8":
-                    utilBikeView.showBike();
+                    bikeManager.viewAvailableBike();
                     break;
-//                    case "9":
-//                        soldDetailsView.viewSoldOrders();
-//                        break;
+                case "9":
+                    bikeManager.viewSoldBike(owner);
+                    break;
                 case "10":
                     utilOwnerView.showPersonalDetail(owner);
                     break;
                 case "11":
-                    utilBikeView.showSoldBikes(owner);
+                    bikeManager.viewSoldBike(owner);
                     break;
                 case "12":
                     break whileLoop;
