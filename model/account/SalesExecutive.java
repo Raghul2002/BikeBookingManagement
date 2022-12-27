@@ -1,9 +1,7 @@
 package bbm.model.account;
 
-import bbm.model.interfaces.IPersonalAdministrator;
 
-
-public class SalesExecutive extends User implements IPersonalAdministrator {
+public class SalesExecutive extends User {
     private static int SEId = 1;
     private final int salesExecutiveId = SEId;
 
@@ -13,16 +11,6 @@ public class SalesExecutive extends User implements IPersonalAdministrator {
     }
     public int getSalesExecutiveId() {
         return salesExecutiveId;
-    }
-
-    @Override
-    public void editDetails() {
-
-    }
-
-    @Override
-    public void printDetails() {
-
     }
 
 }

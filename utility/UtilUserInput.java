@@ -1,74 +1,70 @@
 package bbm.utility;
 
-import bbm.model.account.Owner;
-import bbm.model.account.User;
 import bbm.model.interfaces.IEncryption;
 import bbm.model.encryption.Encryption;
+import bbm.enumUserDetails;
 
 import java.util.*;
 
 public class UtilUserInput {
-    Scanner sc = new Scanner(System.in);
-    private String firstName,lastName, userName, password,emailId;
+    static Scanner sc = new Scanner(System.in);
+    private static String firstName,lastName, userName, password,emailId;
     private static long phoneNo;
+    private UtilUserInput(){}
 
-    private String getUserNameDetails() {
+    private static String getUserNameDetails() {
         System.out.println("Enter User Name \t:");
         userName = sc.next();
         return  userName;
     }
-    private String getPasswordDetails(){
+    private static String getPasswordDetails(){
         IEncryption encryption = new Encryption();
         System.out.println("Enter Password \t:");
         password = sc.next();
         password = encryption.encryptPassword(password);
         return password;
     }
-    private String getFirstNameDetails(){
+    private static String getFirstNameDetails(){
         System.out.println("Enter First Name \t:");
         firstName = sc.next();
         return firstName;
     }
-    private String getLastNameDetails(){
+    private static String getLastNameDetails(){
         System.out.println("Enter Last Name \t:");
         lastName = sc.next();
         return lastName;
     }
-    private String getEmailIdDetails(){
+    private static String getEmailIdDetails(){
         System.out.println("Enter Email \t:");
         emailId = sc.next();
         return emailId;
     }
-    private long getPhoneNoDetails(){
+    private static long getPhoneNoDetails(){
         System.out.println("Enter Phone number \t:");
         phoneNo = sc.nextLong();
         return phoneNo;
     }
-    public List<String> getSignInDetails() {
+    public static List<String> getSignInDetails() {
         getUserNameDetails();
         getPasswordDetails();
-        List<String > details = new ArrayList<>();
+        List<String> details = new ArrayList<>();
         details.add(userName);
         details.add(password);
         return details;
     }
-    public HashMap<String,Object> getSignUpDetails() {
-        HashMap<String,Object> details=new HashMap<>();
+    public static HashMap<enumUserDetails,Object> getSignUpDetails() {
+        HashMap<enumUserDetails,Object> details=new HashMap<>();
         getFirstNameDetails();
         getLastNameDetails();
         getSignInDetails();
         getEmailIdDetails();
         getPhoneNoDetails();
-        details.put("firstName",firstName);
-        details.put("lastName",lastName);
-        details.put("userName",userName);
-        details.put("password",password);
-        details.put("emailId",emailId);
-        details.put("phoneNo",phoneNo);
+        details.put(enumUserDetails.FIRST_NAME,firstName);
+        details.put(enumUserDetails.LAST_NAME,lastName);
+        details.put(enumUserDetails.USER_NAME,userName);
+        details.put(enumUserDetails.PASSWORD,password);
+        details.put(enumUserDetails.EMAIL_ID,emailId);
+        details.put(enumUserDetails.PHONE_NO,phoneNo);
         return details;
-    }
-    public Owner getOwnerSignUpDetails(){
-        getSignUpDetails();
-        return new Owner(firstName,lastName,userName,password,emailId,phoneNo);
     }
 }

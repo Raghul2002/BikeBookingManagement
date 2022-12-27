@@ -2,12 +2,17 @@ package bbm.customer;
 
 import bbm.manager.BikeManagerController;
 import bbm.model.account.Customer;
+import bbm.salesExecutive.SalesExecutiveController;
+import bbm.utility.UtilBikeInput;
+import bbm.utility.UtilBikeView;
 
 import java.util.Scanner;
 
 public class CustomerView {
     Scanner sc = new Scanner(System.in);
     BikeManagerController bikeManager = new BikeManagerController();
+    SalesExecutiveController salesExecutiveController = new SalesExecutiveController();
+    CustomerController customerController = new CustomerController();
     public void viewPortal(Customer customer) {
         System.out.println("--------------------Welcome to customer Portal---------------------------");
         whileLoop:
@@ -18,13 +23,13 @@ public class CustomerView {
                     bikeManager.viewAvailableBike();
                     break;
                 case "2":
-                   // salesExecutiveController.compareBike();
+                    salesExecutiveController.compareBike(UtilBikeInput.getBikesIdToCompare());
                     break;
                 case "3":
                    // salesExecutiveController.buyBike(customer.getCustomerId());
                     break;
                 case "4":
-                    //customerView.showPersonalDetail(customer);
+                    customerController.showPersonalDetails(customer);
                     break;
                 case "5":
                     break whileLoop;

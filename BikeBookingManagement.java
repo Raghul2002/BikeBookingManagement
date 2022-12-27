@@ -15,6 +15,72 @@ import bbm.utility.UtilUserInput;
 
 import java.util.List;
 import java.util.Scanner;
+enum UserTypes {
+    OWNER,
+    MANAGER,
+    SALES_EXECUTIVE,
+    CUSTOMER,
+    EXIT;
+
+    void viewPortal() {
+        User user;
+        IUserAuthentication authentication;
+        Scanner sc = new Scanner(System.in);
+        switch (this) {
+            case OWNER:
+                List<String> loginCredentials = UtilUserInput.getSignInDetails();
+                authentication = new OwnerAuthenticator();
+                user = authentication.authenticate(loginCredentials);
+                if(user !=null) {
+                    IPortal ownerView = new OwnerView();
+                    ownerView.viewPortal(user);
+                }
+                break;
+            case MANAGER:
+                loginCredentials = UtilUserInput.getSignInDetails();
+                authentication = new ManagerAuthenticator();
+                user = authentication.authenticate(loginCredentials);
+                if(user instanceof Manager) {
+                    ManagerView managerView = new ManagerView();
+                    managerView.viewPortal((Manager)user);
+                }
+                break;
+            case SALES_EXECUTIVE:
+                loginCredentials = UtilUserInput.getSignInDetails();
+                authentication = new SalesExecutiveAuthenticator();
+                user = authentication.authenticate(loginCredentials);
+                if(user instanceof SalesExecutive) {
+                    SalesExecutiveView salesExecutiveView = new SalesExecutiveView();
+                    salesExecutiveView.viewPortal((SalesExecutive)user);
+                }
+                break;
+            case CUSTOMER:
+                System.out.println("1.Sign Up\n2.Sign In");
+                switch (sc.nextLine()) {
+                    case "1":
+                        UtilUserInput.getSignUpDetails();
+                    case "2":
+                        loginCredentials = UtilUserInput.getSignInDetails();
+                        authentication = new CustomerAuthenticator();
+                        user = authentication.authenticate(loginCredentials);
+                        if(user instanceof Customer) {
+                            CustomerView customerView = new CustomerView();
+                            customerView.viewPortal((Customer)user);
+                        }
+                    default:
+                        System.out.println("Enter valid number!!");
+                }
+                break;
+            case EXIT:
+                System.out.println("Console Closing !!!");
+                return;
+            default:
+                System.out.println("Enter valid Number");
+
+        }
+    }
+
+}
 
 public class BikeBookingManagement {
     static {
@@ -27,16 +93,15 @@ public class BikeBookingManagement {
         db.addBike(new EBike(5,4,3,2,1,"5","4", "3","2",1,5,4,3,2));
     }
     private void mainLoop() {
+        User user;
+        IUserAuthentication authentication;
+        Scanner sc = new Scanner(System.in);
         try {
-            User user;
-            UtilUserInput utilUserInput = new UtilUserInput();
-            IUserAuthentication authentication;
-            Scanner sc = new Scanner(System.in);
             System.out.println("1.Owner\n2.Manager\n3.Sales Executive\n4.Customer\n5.Exit Console");
             System.out.println("Enter number :");
             switch (sc.nextLine()) {
                 case "1":
-                    List<String> loginCredentials = utilUserInput.getSignInDetails();
+                    List<String> loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new OwnerAuthenticator();
                     user = authentication.authenticate(loginCredentials);
                     if(user !=null) {
@@ -45,7 +110,7 @@ public class BikeBookingManagement {
                     }
                     break;
                 case "2":
-                    loginCredentials = utilUserInput.getSignInDetails();
+                    loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new ManagerAuthenticator();
                     user = authentication.authenticate(loginCredentials);
                     if(user instanceof Manager) {
@@ -54,7 +119,7 @@ public class BikeBookingManagement {
                     }
                     break;
                 case "3":
-                    loginCredentials = utilUserInput.getSignInDetails();
+                    loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new SalesExecutiveAuthenticator();
                     user = authentication.authenticate(loginCredentials);
                     if(user instanceof SalesExecutive) {
@@ -66,9 +131,9 @@ public class BikeBookingManagement {
                     System.out.println("1.Sign Up\n2.Sign In");
                     switch (sc.nextLine()) {
                         case "1":
-                            utilUserInput.getSignUpDetails();
+                            UtilUserInput.getSignUpDetails();
                         case "2":
-                            loginCredentials = utilUserInput.getSignInDetails();
+                            loginCredentials = UtilUserInput.getSignInDetails();
                             authentication = new CustomerAuthenticator();
                             user = authentication.authenticate(loginCredentials);
                             if(user instanceof Customer) {

@@ -14,7 +14,6 @@ import java.util.List;
 
 public class MBikeManagerController implements IBikeManager {
     DataManager dataManager = new DataManager();
-    UtilBikeView bikeView = new UtilBikeView();
     @Override
     public boolean addBike(Bike bike, Manager manager) {
         if(bike instanceof MBike) {
@@ -42,7 +41,7 @@ public class MBikeManagerController implements IBikeManager {
             if(bike.getAvailabilityStatus().equals( bikeStatus))
                 mBikes.add(bike);
         }
-        bikeView.printMBikeList(mBikes);
+        UtilBikeView.printMBikeList(mBikes);
     }
 
     @Override
@@ -53,6 +52,6 @@ public class MBikeManagerController implements IBikeManager {
             if (i.getAvailabilityStatus().equals(BikeStatus.AVAILABLE.toString()) && (i.getBikeId() == bikeId1 || i.getBikeId() == bikeId2))
                 mBikes.add(i);
         }
-        bikeView.printMBikeList(mBikes);
+        UtilBikeView.printMBikeList(mBikes);
     }
 }

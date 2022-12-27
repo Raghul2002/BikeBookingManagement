@@ -5,7 +5,6 @@ import bbm.model.account.Manager;
 import bbm.model.bike.Bike;
 import bbm.model.bike.BikeStatus;
 import bbm.model.bike.EBike;
-import bbm.model.bike.EBike;
 import bbm.model.interfaces.IBikeManager;
 import bbm.model.interfaces.IDataManager;
 import bbm.utility.UtilBikeView;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class EBikeManagerController implements IBikeManager {
     IDataManager dataManager = new DataManager();
-    UtilBikeView bikeView = new UtilBikeView();
+    UtilBikeView bikeView = null;
 
     @Override
     public boolean addBike(Bike bike, Manager manager) {

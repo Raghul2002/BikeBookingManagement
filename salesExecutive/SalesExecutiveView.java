@@ -22,10 +22,10 @@ public class SalesExecutiveView {
                     bikeManager.viewReservedBike(salesExecutive);
                     break;
                 case "3":
-                    salesExecutiveController.confirmBooking();
+                    //salesExecutiveController.confirmBooking();
                     break;
                 case "4":
-                    //salesExecutiveView.showPersonalDetail(salesExecutive);
+                    salesExecutiveController.showPersonalDetails(salesExecutive);
                     break;
                 case "5":
                     break salesExecutiveWhile;

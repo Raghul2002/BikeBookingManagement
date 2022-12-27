@@ -1,10 +1,5 @@
 package bbm.model.account;
 
-import bbm.model.interfaces.IBikeAdministrator;
-import bbm.model.interfaces.IPersonalAdministrator;
-import bbm.model.bike.EBike;
-import bbm.model.bike.MBike;
-
 public class Manager extends User  {
     private static int mId = 1;
     private final int managerId ;

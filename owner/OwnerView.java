@@ -1,8 +1,6 @@
 package bbm.owner;
 
 import bbm.manager.BikeManagerController;
-import bbm.utility.UtilBikeView;
-import bbm.utility.UtilOwnerView;
 import bbm.utility.UtilUserInput;
 
 import bbm.model.account.*;
@@ -13,9 +11,6 @@ import java.util.Scanner;
 
 public class OwnerView implements IPortal {
     OwnerController ownerController = new OwnerController();
-    UtilUserInput utilUserInput = new UtilUserInput();
-    UtilBikeView utilBikeView = new UtilBikeView();
-    UtilOwnerView utilOwnerView = new UtilOwnerView();
     BikeManagerController bikeManager = new BikeManagerController();
     Scanner sc = new Scanner(System.in);
 
@@ -29,11 +24,11 @@ public class OwnerView implements IPortal {
             switch (sc.nextLine()) {
                 case "1":
                     System.out.println("Enter Manager Details :");
-                    ownerController.addManager(owner, utilUserInput.getSignUpDetails());
+                    ownerController.addManager(owner, UtilUserInput.getSignUpDetails());
                     break;
                 case "2":
                     System.out.println("Enter Sales Executive Details :");
-                    ownerController.addSalesExecutive(owner, utilUserInput.getSignUpDetails());
+                    ownerController.addSalesExecutive(owner, UtilUserInput.getSignUpDetails());
                     break;
                 case "3":
                     System.out.println("Enter manager id you want to remove :");
@@ -83,7 +78,7 @@ public class OwnerView implements IPortal {
                     //bikeManager.viewSoldBike(owner);
                     break;
                 case "10":
-                    utilOwnerView.showPersonalDetail(owner);
+                    ownerController.showPersonalDetails(owner);
                     break;
                 case "11":
                     bikeManager.viewSoldBike(owner);

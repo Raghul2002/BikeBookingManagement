@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class ManagerView {
     Scanner sc = new Scanner(System.in);
-    UtilBikeInput bikeInput = new UtilBikeInput();
     BikeManagerController bikeManager = new BikeManagerController();
     EBikeManagerController eBikeManager = new EBikeManagerController();
     MBikeManagerController mBikeManager = new MBikeManagerController();
@@ -20,12 +19,12 @@ public class ManagerView {
                     System.out.println("1.Add Mechanical Bike\n2.Add Electronic Bike");
                     switch (sc.nextLine()) {
                         case "1":
-                            if (mBikeManager.addBike(bikeInput.getMBikeDetails(), manager))
+                            if (mBikeManager.addBike(UtilBikeInput.getMBikeDetails(), manager))
                                 System.out.println("Mechanical bike added Successfully");
                             else System.out.println("Sorry!! Couldn't add Mechanical Bike");
                             break;
                         case "2":
-                            if (eBikeManager.addBike(bikeInput.getEBikeDetails(), manager))
+                            if (eBikeManager.addBike(UtilBikeInput.getEBikeDetails(), manager))
                                 System.out.println("Electrical bike added Electrical Successfully");
                             else System.out.println("Sorry!! Couldn't add Bike");
                             break;
@@ -58,7 +57,7 @@ public class ManagerView {
                     bikeManager.viewAvailableBike();
                     break;
                 case "4":
-                    //managerView.showPersonalDetail(manager);
+                    bikeManager.showPersonalDetails(manager);
                     break;
                 case "5":
                     break whileLoop;
