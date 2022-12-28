@@ -9,6 +9,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OwnerView {
+    enum EnumOwnerPortal {
+        ADD_MANAGER,
+        ADD_SALES_EXECUTIVE,
+        REMOVE_MANAGER,
+        REMOVE_SALES_EXECUTIVE,
+        VIEW_MANAGER_DETAILS,
+        VIEW_SALES_EXECUTIVE_DETAILS,
+        VIEW_CUSTOMER_DETAILS,
+        VIEW_BIKE_DETAILS,
+        VIEW_SOLD_DETAILS,
+        VIEW_PERSONAL_DETAILS,
+        VIEW_SOLD_BIKE_DETAIL,
+        LOGOUT,
+        DEFAULT
+    }
+
     OwnerController ownerController = new OwnerController();
     BikeManagerController bikeManager = new BikeManagerController();
     Scanner sc = new Scanner(System.in);
@@ -18,31 +34,42 @@ public class OwnerView {
         System.out.println("--------------------Welcome to Owner Portal---------------------------");
         whileLoop:
         while (true) {
-            System.out.println("1.Add Manager\n2.Add Sales Executive\n3.Remove Manager\n4.Remove Sales Executive\n5.View Manager Details\n6.View Sales Man Details\n7.View Customer Details\n8.View Bike Details\n9.View Sold Details\n10.View Personal Details\n11.View Sold Bike Details\n12.Logout");
-            switch (sc.nextLine()) {
-                case "1":
+            int option;
+            EnumOwnerPortal enumOwner = EnumOwnerPortal.DEFAULT;
+            for (int i = 0; i < EnumOwnerPortal.values().length - 1; i++) {
+                System.out.println(i + 1 + "." + EnumOwnerPortal.values()[i]);
+            }
+            System.out.println("Enter number :");
+            option = Integer.parseInt(sc.nextLine());
+            for (EnumOwnerPortal type : EnumOwnerPortal.values()) {
+                if (type.ordinal() == option - 1) {
+                    enumOwner = type;
+                }
+            }
+            switch (enumOwner) {
+                case ADD_MANAGER:
                     System.out.println("Enter Manager Details :");
                     ownerController.addManager(owner, UtilUserInput.getSignUpDetails());
                     break;
-                case "2":
+                case ADD_SALES_EXECUTIVE:
                     System.out.println("Enter Sales Executive Details :");
                     ownerController.addSalesExecutive(owner, UtilUserInput.getSignUpDetails());
                     break;
-                case "3":
+                case REMOVE_MANAGER:
                     System.out.println("Enter manager id you want to remove :");
                     if (ownerController.removeManger(owner, sc.nextInt()))
                         System.out.println("Successfully Removed");
                     else
                         System.out.println("Failed, Enter valid Manager Id !");
                     break;
-                case "4":
+                case REMOVE_SALES_EXECUTIVE:
                     System.out.println("Enter Sales Executive id you want to remove :");
                     if (ownerController.removeSalesExecutive(owner, sc.nextInt()))
                         System.out.println("Successfully Removed");
                     else
                         System.out.println("Failed, Enter valid Manager Id !");
                     break;
-                case "5":
+                case VIEW_MANAGER_DETAILS:
                     List<Manager> managerList = ownerController.getManagerList();
                     if (!managerList.isEmpty()) {
                         System.out.println("Manager Details :");
@@ -51,7 +78,7 @@ public class OwnerView {
                         }
                     } else System.out.println("Sorry !!\nCurrently no managers registered");
                     break;
-                case "6":
+                case VIEW_SALES_EXECUTIVE_DETAILS:
                     List<SalesExecutive> salesExecutiveList = ownerController.getSalesExecutiveList();
                     if (!salesExecutiveList.isEmpty()) {
                         System.out.println("Manager Details :");
@@ -60,7 +87,7 @@ public class OwnerView {
                         }
                     } else System.out.println("Sorry !!\nCurrently no sales executive registered");
                     break;
-                case "7":
+                case VIEW_CUSTOMER_DETAILS:
                     List<Customer> customerList = ownerController.getCustomerList();
                     if (!customerList.isEmpty()) {
                         System.out.println("Manager Details :");
@@ -69,22 +96,22 @@ public class OwnerView {
                         }
                     } else System.out.println("Sorry !!\nCurrently no customer registered");
                     break;
-                case "8":
+                case VIEW_BIKE_DETAILS:
                     bikeManager.viewAvailableBike();
                     break;
-                case "9":
+                case VIEW_SOLD_DETAILS:
                     //bikeManager.viewSoldBike(owner);
                     break;
-                case "10":
+                case VIEW_PERSONAL_DETAILS:
                     ownerController.showPersonalDetails(owner);
                     break;
-                case "11":
+                case VIEW_SOLD_BIKE_DETAIL:
                     bikeManager.viewSoldBike(owner);
                     break;
-                case "12":
+                case LOGOUT:
                     break whileLoop;
-                default:
-                    System.out.println("Enter Valid Number");
+                case DEFAULT:
+                    System.err.println("Enter Valid Number");
             }
         }
     }

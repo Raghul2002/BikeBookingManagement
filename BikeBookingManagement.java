@@ -16,16 +16,16 @@ import bbm.utility.UtilUserInput;
 import java.util.List;
 import java.util.Scanner;
 
-enum EnumUserTypes {
-    OWNER,
-    MANAGER,
-    SALES_EXECUTIVE,
-    CUSTOMER,
-    EXIT,
-    DEFAULT
-}
-
 public class BikeBookingManagement {
+    enum EnumUserTypes {
+        OWNER,
+        MANAGER,
+        SALES_EXECUTIVE,
+        CUSTOMER,
+        EXIT,
+        DEFAULT
+    }
+
     static {
         IDatabase db = Database.getInstance();
         db.addUser(new Manager("m", "m", "m", "r", "@gmail", 3456234234L));
@@ -45,8 +45,8 @@ public class BikeBookingManagement {
         SalesExecutiveController salesExecutive = new SalesExecutiveController();
         Scanner sc = new Scanner(System.in);
         try {
-            for (int i =0 ;i<EnumUserTypes.values().length-1;i++) {
-                System.out.println(i+1 + "." + EnumUserTypes.values()[i]);
+            for (int i = 0; i < EnumUserTypes.values().length - 1; i++) {
+                System.out.println(i + 1 + "." + EnumUserTypes.values()[i]);
             }
             System.out.println("Enter number :");
             num = Integer.parseInt(sc.nextLine());
@@ -112,6 +112,7 @@ public class BikeBookingManagement {
         }
         mainLoop();
     }
+
     public static void main(String[] args) {
         BikeBookingManagement bikeBookingManagement = new BikeBookingManagement();
         bikeBookingManagement.mainLoop();

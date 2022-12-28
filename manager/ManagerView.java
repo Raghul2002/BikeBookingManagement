@@ -1,21 +1,45 @@
 package bbm.manager;
 
+import bbm.customer.CustomerView;
 import bbm.model.account.Manager;
 import bbm.utility.UtilBikeInput;
+
 import java.util.Scanner;
 
+enum EnumManagerPortal {
+    ADD_BIKE,
+    REMOVE_BIKE,
+    VIEW_BIKE,
+    VIEW_PERSONAL_DETAILS,
+    LOGOUT,
+    DEFAULT;
+}
 public class ManagerView {
+
+
     Scanner sc = new Scanner(System.in);
     BikeManagerController bikeManager = new BikeManagerController();
     EBikeManagerController eBikeManager = new EBikeManagerController();
     MBikeManagerController mBikeManager = new MBikeManagerController();
+
     public void viewPortal(Manager manager) {
         System.out.println("--------------------Welcome to manager Portal---------------------------");
         whileLoop:
         while (true) {
-            System.out.println("1.Add Bike\n2.Remove Bike\n3.View Bike\n4.View Personal Details\n5.Logout");
-            switch (sc.nextLine()) {
-                case "1":
+            int option;
+            EnumManagerPortal enumManager = EnumManagerPortal.DEFAULT;
+            for (int i = 0; i < EnumManagerPortal.values().length - 1; i++) {
+                System.out.println(i + 1 + "." + EnumManagerPortal.values()[i]);
+            }
+            System.out.println("Enter number :");
+            option = Integer.parseInt(sc.nextLine());
+            for (EnumManagerPortal type : EnumManagerPortal.values()) {
+                if (type.ordinal() == option - 1) {
+                    enumManager = type;
+                }
+            }
+            switch (enumManager) {
+                case ADD_BIKE:
                     System.out.println("1.Add Mechanical Bike\n2.Add Electronic Bike");
                     switch (sc.nextLine()) {
                         case "1":
@@ -33,7 +57,7 @@ public class ManagerView {
                             break;
                     }
                     break;
-                case "2":
+                case REMOVE_BIKE:
                     System.out.println("1.Remove Mechanical Bike\n2.Remove Electric Bike");
                     switch (sc.nextLine()) {
                         case "1":
@@ -53,18 +77,17 @@ public class ManagerView {
                             break;
                     }
                     break;
-                case "3":
+                case VIEW_BIKE:
                     bikeManager.viewAvailableBike();
                     break;
-                case "4":
+                case VIEW_PERSONAL_DETAILS:
                     bikeManager.showPersonalDetails(manager);
                     break;
-                case "5":
+                case LOGOUT:
                     break whileLoop;
-                default:
-                    System.out.println("Enter Valid Number");
+                case DEFAULT:
+                    System.err.println("Enter Valid Number");
             }
         }
     }
-
 }

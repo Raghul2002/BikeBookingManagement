@@ -18,6 +18,7 @@ enum EnumCustomerPortal {
 }
 
 public class CustomerView {
+
     Scanner sc = new Scanner(System.in);
     BikeManagerController bikeManager = new BikeManagerController();
     SalesExecutiveController salesExecutive = new SalesExecutiveController();
