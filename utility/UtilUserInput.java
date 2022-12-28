@@ -2,7 +2,7 @@ package bbm.utility;
 
 import bbm.model.interfaces.IEncryption;
 import bbm.model.encryption.Encryption;
-import bbm.enumUserDetails;
+import bbm.enumPackage.EnumUserDetails;
 
 import java.util.*;
 
@@ -52,19 +52,20 @@ public class UtilUserInput {
         details.add(password);
         return details;
     }
-    public static HashMap<enumUserDetails,Object> getSignUpDetails() {
-        HashMap<enumUserDetails,Object> details=new HashMap<>();
+    public static HashMap<EnumUserDetails,Object> getSignUpDetails() {
+        System.out.println("Enter sign up details :");
+        HashMap<EnumUserDetails,Object> details=new HashMap<>();
         getFirstNameDetails();
         getLastNameDetails();
         getSignInDetails();
         getEmailIdDetails();
         getPhoneNoDetails();
-        details.put(enumUserDetails.FIRST_NAME,firstName);
-        details.put(enumUserDetails.LAST_NAME,lastName);
-        details.put(enumUserDetails.USER_NAME,userName);
-        details.put(enumUserDetails.PASSWORD,password);
-        details.put(enumUserDetails.EMAIL_ID,emailId);
-        details.put(enumUserDetails.PHONE_NO,phoneNo);
+        details.put(EnumUserDetails.FIRST_NAME,firstName);
+        details.put(EnumUserDetails.LAST_NAME,lastName);
+        details.put(EnumUserDetails.USER_NAME,userName);
+        details.put(EnumUserDetails.PASSWORD,password);
+        details.put(EnumUserDetails.EMAIL_ID,emailId);
+        details.put(EnumUserDetails.PHONE_NO,phoneNo);
         return details;
     }
 }

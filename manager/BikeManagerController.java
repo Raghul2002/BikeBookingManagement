@@ -1,12 +1,12 @@
 package bbm.manager;
 
+import bbm.enumPackage.EnumBikeTypes;
 import bbm.model.account.Manager;
 import bbm.model.account.Owner;
 import bbm.model.account.SalesExecutive;
-import bbm.model.account.User;
 import bbm.model.bike.BikeStatus;
 import bbm.utility.UserView.UtilManagerView;
-import bbm.utility.UserView.UtilOwnerView;
+import bbm.utility.UtilBikeInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,17 @@ import java.util.List;
 public class BikeManagerController {
     EBikeManagerController eBikeManager = new EBikeManagerController();
     MBikeManagerController mBikeManager = new MBikeManagerController();
-    public void viewAvailableBike(){
+    private void viewAvailableEBike(){
         BikeStatus bikeStatus = BikeStatus.AVAILABLE;
         eBikeManager.viewBike(bikeStatus.toString());
+    }
+    private void viewAvailableMBike(){
+        BikeStatus bikeStatus = BikeStatus.AVAILABLE;
         mBikeManager.viewBike(bikeStatus.toString());
+    }
+    public void viewAvailableBike(){
+        viewAvailableMBike();
+        viewAvailableEBike();
     }
     public void viewSoldBike(Owner owner){
         BikeStatus bikeStatus = BikeStatus.SOLD;
@@ -33,5 +40,16 @@ public class BikeManagerController {
         List<Manager> userList = new ArrayList<>();
         userList.add(manager);
         UtilManagerView.showManagerDetails(userList);
+    }
+
+    public int getBikeId(EnumBikeTypes bikeType) {
+        if(EnumBikeTypes.MECHANICAL_BIKE.equals(bikeType))
+            viewAvailableMBike();
+        else viewAvailableEBike();
+        return UtilBikeInput.getBikeId();
+    }
+
+    public EnumBikeTypes getBikeType() {
+        return UtilBikeInput.getBikeType();
     }
 }

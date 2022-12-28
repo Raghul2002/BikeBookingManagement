@@ -9,6 +9,7 @@ import bbm.model.authentication.*;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
 import bbm.owner.OwnerView;
+import bbm.salesExecutive.SalesExecutiveController;
 import bbm.salesExecutive.SalesExecutiveView;
 import bbm.utility.UtilUserInput;
 
@@ -29,6 +30,7 @@ public class BikeBookingManagement {
         IDatabase db = Database.getInstance();
         db.addUser(new Manager("m", "m", "m", "r", "@gmail", 3456234234L));
         db.addUser(new Owner("m", "m", "o", "t", "@gmail", 3456234234L));
+        db.addUser(new Customer("m", "m", "c", "h", "@gmail", 3456234234L));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new EBike(5, 4, 3, 2, 1, "5", "4", "3", "2", 1, 5, 4, 3, 2));
@@ -40,13 +42,14 @@ public class BikeBookingManagement {
         int num;
         EnumUserTypes userType = EnumUserTypes.DEFAULT;
         IUserAuthentication authentication;
+        SalesExecutiveController salesExecutive = new SalesExecutiveController();
         Scanner sc = new Scanner(System.in);
         try {
             for (int i =0 ;i<EnumUserTypes.values().length-1;i++) {
                 System.out.println(i+1 + "." + EnumUserTypes.values()[i]);
             }
             System.out.println("Enter number :");
-            num = sc.nextInt();
+            num = Integer.parseInt(sc.nextLine());
             for (EnumUserTypes type : EnumUserTypes.values()) {
                 if (type.ordinal() == num - 1) {
                     userType = type;
@@ -84,7 +87,8 @@ public class BikeBookingManagement {
                     System.out.println("1.Sign Up\n2.Sign In");
                     switch (sc.nextLine()) {
                         case "1":
-                            UtilUserInput.getSignUpDetails();
+                            salesExecutive.addCustomer(UtilUserInput.getSignUpDetails());
+                            System.out.println("Customer added successfully");
                         case "2":
                             loginCredentials = UtilUserInput.getSignInDetails();
                             authentication = new CustomerAuthenticator();
@@ -101,14 +105,13 @@ public class BikeBookingManagement {
                     System.out.println("Console Closing !!!");
                     return;
                 case DEFAULT:
-                    System.out.println("Enter valid Number");
+                    System.err.println("Enter valid Number");
             }
         } catch (Exception e) {
             System.out.println("Error " + e);
         }
         mainLoop();
     }
-
     public static void main(String[] args) {
         BikeBookingManagement bikeBookingManagement = new BikeBookingManagement();
         bikeBookingManagement.mainLoop();

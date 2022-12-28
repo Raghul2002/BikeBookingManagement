@@ -1,5 +1,6 @@
 package bbm.utility;
 
+import bbm.enumPackage.EnumBikeTypes;
 import bbm.manager.BikeManagerController;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
@@ -12,8 +13,13 @@ public class UtilBikeInput {
     private UtilBikeInput(){}
 
     static Scanner sc = new Scanner(System.in);
-    private static int topSpeed, groundClearance, wheelBase, maxTorque, price;
+    private static int topSpeed, groundClearance, wheelBase, maxTorque, price,bikeId;
     private static String bikeModel, bodyType, instrumentConsole, seatType;
+    public static int getBikeId(){
+        System.out.println("Enter bike Id:");
+        bikeId = sc.nextInt();
+        return bikeId;
+    }
 
     private static void getBikeDetails() {
         System.out.println("Enter Bike Model \t:");
@@ -82,6 +88,13 @@ public class UtilBikeInput {
         System.out.println("Enter Bike 2 ID:");
         bikeDetails.add(sc.nextInt());
         return bikeDetails;
+    }
+
+    public static EnumBikeTypes getBikeType() {
+        for(EnumBikeTypes bikeTypes :EnumBikeTypes.values())
+            System.out.println(bikeTypes.ordinal()+1+" "+bikeTypes);
+        int a = sc.nextInt();
+        return EnumBikeTypes.values()[a-1];
     }
 }
 

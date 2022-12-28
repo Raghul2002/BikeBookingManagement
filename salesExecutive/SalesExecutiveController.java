@@ -1,27 +1,22 @@
 package bbm.salesExecutive;
 
-import bbm.manager.BikeManagerController;
+import bbm.enumPackage.EnumBikeTypes;
+import bbm.enumPackage.EnumUserDetails;
 import bbm.manager.EBikeManagerController;
 import bbm.manager.MBikeManagerController;
 import bbm.model.DataManager;
-import bbm.model.SoldDetails;
-import bbm.model.account.Owner;
+import bbm.model.account.Customer;
 import bbm.model.account.SalesExecutive;
-import bbm.model.bike.BikeStatus;
-import bbm.utility.UserView.UtilOwnerView;
 import bbm.utility.UserView.UtilSalesExecutiveView;
-import bbm.utility.UtilBikeView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class SalesExecutiveController {
-    BikeManagerController bikeManager = new BikeManagerController();
+    DataManager dataManager = new DataManager();
     EBikeManagerController eBikeManagerController = new EBikeManagerController();
     MBikeManagerController mBikeManagerController = new MBikeManagerController();
-    Scanner sc = new Scanner(System.in);
-
     public void confirmBooking() {
 //        for (SoldDetails i : dataManager.getSoldDetailsList()) {
 //            if(i.getSalesExecutiveId() == 0) {
@@ -35,8 +30,7 @@ public class SalesExecutiveController {
     }
 
     public void compareBike(List<Integer> bikeDetails) {
-
-        if (bikeDetails.get(1) == bikeDetails.get(2))
+        if (bikeDetails.get(1).equals(bikeDetails.get(2)))
             System.out.println("Enter valid comparison!! You are comparing same bike ");
         else
             switch (bikeDetails.get(0)) {
@@ -57,15 +51,21 @@ public class SalesExecutiveController {
         userList.add(salesExecutive);
         UtilSalesExecutiveView.showSalesExecutiveDetails(userList);
     }
-    public void buyBike(int customerId) {
-        bikeManager.viewAvailableBike();
-        int bikeId;
-        System.out.println("Enter the bike id you want to book:");
-        bikeId = sc.nextInt();
+    public void buyBike(int customerId, EnumBikeTypes bikeType,int bikeId) {
 //        if (OwnerModel.buyBike(bikeId)) {
 //            //SoldDetails.addBookingDetails(bikeId, customerId);
 //            System.out.println("Thank you for Booking ! \nYour Bike will be delivered");
 //        } else
 //            System.out.println("The Bike ID you entered does not exist !!! Try Again");
+    }
+    public void addCustomer(HashMap<EnumUserDetails, Object> details){
+        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
+        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
+        String userName = (String) details.get(EnumUserDetails.USER_NAME);
+        String password = (String) details.get(EnumUserDetails.PASSWORD);
+        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
+        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
+        Customer customer = new Customer(firstName, lastName, userName, password, emailId, phoneNo);
+        dataManager.addUser(customer);
     }
 }

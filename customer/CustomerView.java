@@ -1,40 +1,63 @@
 package bbm.customer;
 
+import bbm.enumPackage.EnumBikeTypes;
 import bbm.manager.BikeManagerController;
 import bbm.model.account.Customer;
 import bbm.salesExecutive.SalesExecutiveController;
 import bbm.utility.UtilBikeInput;
-import bbm.utility.UtilBikeView;
 
 import java.util.Scanner;
+
+enum EnumCustomerPortal {
+    VIEW_BIKE,
+    COMPARE_BIKE,
+    BUY_BIKE,
+    VIEW_PERSONAL_DETAILS,
+    LOGOUT,
+    DEFAULT
+}
 
 public class CustomerView {
     Scanner sc = new Scanner(System.in);
     BikeManagerController bikeManager = new BikeManagerController();
-    SalesExecutiveController salesExecutiveController = new SalesExecutiveController();
+    SalesExecutiveController salesExecutive = new SalesExecutiveController();
     CustomerController customerController = new CustomerController();
+
     public void viewPortal(Customer customer) {
         System.out.println("--------------------Welcome to customer Portal---------------------------");
         whileLoop:
         while (true) {
-            System.out.println("1.View Bike\n2.Compare Bike\n3.Buy Bike\n4.View Personal Details\n5.Logout");
-            switch (sc.nextLine()) {
-                case "1":
+            int option;
+            EnumCustomerPortal enumCustomer = EnumCustomerPortal.DEFAULT;
+            for (int i = 0; i < EnumCustomerPortal.values().length - 1; i++) {
+                System.out.println(i + 1 + "." + EnumCustomerPortal.values()[i]);
+            }
+            System.out.println("Enter number :");
+            option = Integer.parseInt(sc.nextLine());
+            for (EnumCustomerPortal type : EnumCustomerPortal.values()) {
+                if (type.ordinal() == option - 1) {
+                    enumCustomer = type;
+                }
+            }
+            switch (enumCustomer) {
+                case VIEW_BIKE:
                     bikeManager.viewAvailableBike();
                     break;
-                case "2":
-                    salesExecutiveController.compareBike(UtilBikeInput.getBikesIdToCompare());
+                case COMPARE_BIKE:
+                    salesExecutive.compareBike(UtilBikeInput.getBikesIdToCompare());
                     break;
-                case "3":
-                   // salesExecutiveController.buyBike(customer.getCustomerId());
+                case BUY_BIKE:
+                    EnumBikeTypes bikeType = bikeManager.getBikeType();
+                    int bikeId = bikeManager.getBikeId(bikeType);
+                    salesExecutive.buyBike(customer.getCustomerId(), bikeType, bikeId);
                     break;
-                case "4":
+                case VIEW_PERSONAL_DETAILS:
                     customerController.showPersonalDetails(customer);
                     break;
-                case "5":
+                case LOGOUT:
                     break whileLoop;
-                default:
-                    System.out.println("Enter Valid Number");
+                case DEFAULT:
+                    System.err.println("Enter Valid Number");
             }
         }
     }

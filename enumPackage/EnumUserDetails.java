@@ -1,6 +1,6 @@
-package bbm;
+package bbm.enumPackage;
 
-public enum enumUserDetails {
+public enum EnumUserDetails {
     FIRST_NAME,
     LAST_NAME,
     USER_NAME,

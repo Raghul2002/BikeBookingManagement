@@ -4,7 +4,7 @@ import bbm.model.DataManager;
 import bbm.model.account.*;
 import bbm.model.interfaces.IDataManager;
 import bbm.utility.UserView.UtilOwnerView;
-import bbm.enumUserDetails;
+import bbm.enumPackage.EnumUserDetails;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,23 +12,23 @@ import java.util.List;
 
 public class OwnerController {
     IDataManager dataManager = new DataManager();
-    protected void addManager(Owner owner, HashMap<enumUserDetails, Object> details) {
-        String firstName = (String) details.get(enumUserDetails.FIRST_NAME);
-        String lastName = (String) details.get(enumUserDetails.LAST_NAME);
-        String userName = (String) details.get(enumUserDetails.USER_NAME);
-        String password = (String) details.get(enumUserDetails.PASSWORD);
-        String emailId = (String) details.get(enumUserDetails.EMAIL_ID);
-        Long phoneNo = (Long) details.get(enumUserDetails.PHONE_NO);
+    protected void addManager(Owner owner, HashMap<EnumUserDetails, Object> details) {
+        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
+        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
+        String userName = (String) details.get(EnumUserDetails.USER_NAME);
+        String password = (String) details.get(EnumUserDetails.PASSWORD);
+        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
+        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
         Manager manager = new Manager(firstName, lastName, userName, password, emailId, phoneNo);
         dataManager.addUser(manager);
     }
-    protected void addSalesExecutive(Owner owner,HashMap<enumUserDetails, Object> details) {
-        String firstName = (String) details.get(enumUserDetails.FIRST_NAME);
-        String lastName = (String) details.get(enumUserDetails.LAST_NAME);
-        String userName = (String) details.get(enumUserDetails.USER_NAME);
-        String password = (String) details.get(enumUserDetails.PASSWORD);
-        String emailId = (String) details.get(enumUserDetails.EMAIL_ID);
-        Long phoneNo = (Long) details.get(enumUserDetails.PHONE_NO);
+    protected void addSalesExecutive(Owner owner,HashMap<EnumUserDetails, Object> details) {
+        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
+        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
+        String userName = (String) details.get(EnumUserDetails.USER_NAME);
+        String password = (String) details.get(EnumUserDetails.PASSWORD);
+        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
+        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
         SalesExecutive salesExecutive = new SalesExecutive(firstName, lastName, userName, password, emailId, phoneNo);
         dataManager.addUser(salesExecutive);
     }
