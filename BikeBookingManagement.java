@@ -8,126 +8,79 @@ import bbm.model.account.*;
 import bbm.model.authentication.*;
 import bbm.model.bike.EBike;
 import bbm.model.bike.MBike;
-import bbm.model.interfaces.IPortal;
 import bbm.owner.OwnerView;
 import bbm.salesExecutive.SalesExecutiveView;
 import bbm.utility.UtilUserInput;
 
 import java.util.List;
 import java.util.Scanner;
-enum UserTypes {
+
+enum EnumUserTypes {
     OWNER,
     MANAGER,
     SALES_EXECUTIVE,
     CUSTOMER,
-    EXIT;
-
-    void viewPortal() {
-        User user;
-        IUserAuthentication authentication;
-        Scanner sc = new Scanner(System.in);
-        switch (this) {
-            case OWNER:
-                List<String> loginCredentials = UtilUserInput.getSignInDetails();
-                authentication = new OwnerAuthenticator();
-                user = authentication.authenticate(loginCredentials);
-                if(user !=null) {
-                    IPortal ownerView = new OwnerView();
-                    ownerView.viewPortal(user);
-                }
-                break;
-            case MANAGER:
-                loginCredentials = UtilUserInput.getSignInDetails();
-                authentication = new ManagerAuthenticator();
-                user = authentication.authenticate(loginCredentials);
-                if(user instanceof Manager) {
-                    ManagerView managerView = new ManagerView();
-                    managerView.viewPortal((Manager)user);
-                }
-                break;
-            case SALES_EXECUTIVE:
-                loginCredentials = UtilUserInput.getSignInDetails();
-                authentication = new SalesExecutiveAuthenticator();
-                user = authentication.authenticate(loginCredentials);
-                if(user instanceof SalesExecutive) {
-                    SalesExecutiveView salesExecutiveView = new SalesExecutiveView();
-                    salesExecutiveView.viewPortal((SalesExecutive)user);
-                }
-                break;
-            case CUSTOMER:
-                System.out.println("1.Sign Up\n2.Sign In");
-                switch (sc.nextLine()) {
-                    case "1":
-                        UtilUserInput.getSignUpDetails();
-                    case "2":
-                        loginCredentials = UtilUserInput.getSignInDetails();
-                        authentication = new CustomerAuthenticator();
-                        user = authentication.authenticate(loginCredentials);
-                        if(user instanceof Customer) {
-                            CustomerView customerView = new CustomerView();
-                            customerView.viewPortal((Customer)user);
-                        }
-                    default:
-                        System.out.println("Enter valid number!!");
-                }
-                break;
-            case EXIT:
-                System.out.println("Console Closing !!!");
-                return;
-            default:
-                System.out.println("Enter valid Number");
-
-        }
-    }
-
+    EXIT,
+    DEFAULT
 }
 
 public class BikeBookingManagement {
     static {
         IDatabase db = Database.getInstance();
-        db.addUser(new Manager("m","m","m","r","@gmail",3456234234L));
-        db.addUser(new Owner("m","m","o","t","@gmail", 3456234234L));
-        db.addBike(new MBike(1,2,3,4,5,"1","2","3","4",5,1,"2","3","4","5","3"));
-        db.addBike(new MBike(1,2,3,4,5,"1","2","3","4",5,1,"2","3","4","5","3"));
-        db.addBike(new EBike(5,4,3,2,1,"5","4", "3","2",1,5,4,3,2));
-        db.addBike(new EBike(5,4,3,2,1,"5","4", "3","2",1,5,4,3,2));
+        db.addUser(new Manager("m", "m", "m", "r", "@gmail", 3456234234L));
+        db.addUser(new Owner("m", "m", "o", "t", "@gmail", 3456234234L));
+        db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
+        db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
+        db.addBike(new EBike(5, 4, 3, 2, 1, "5", "4", "3", "2", 1, 5, 4, 3, 2));
+        db.addBike(new EBike(5, 4, 3, 2, 1, "5", "4", "3", "2", 1, 5, 4, 3, 2));
     }
+
     private void mainLoop() {
         User user;
+        int num;
+        EnumUserTypes userType = EnumUserTypes.DEFAULT;
         IUserAuthentication authentication;
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.println("1.Owner\n2.Manager\n3.Sales Executive\n4.Customer\n5.Exit Console");
+            for (int i =0 ;i<EnumUserTypes.values().length-1;i++) {
+                System.out.println(i+1 + "." + EnumUserTypes.values()[i]);
+            }
             System.out.println("Enter number :");
-            switch (sc.nextLine()) {
-                case "1":
+            num = sc.nextInt();
+            for (EnumUserTypes type : EnumUserTypes.values()) {
+                if (type.ordinal() == num - 1) {
+                    userType = type;
+                }
+            }
+            switch (userType) {
+                case OWNER:
                     List<String> loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new OwnerAuthenticator();
                     user = authentication.authenticate(loginCredentials);
-                    if(user !=null) {
-                        IPortal ownerView = new OwnerView();
-                        ownerView.viewPortal(user);
+                    if (user != null) {
+                        OwnerView ownerView = new OwnerView();
+                        ownerView.viewPortal((Owner) user);
                     }
                     break;
-                case "2":
+                case MANAGER:
                     loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new ManagerAuthenticator();
                     user = authentication.authenticate(loginCredentials);
-                    if(user instanceof Manager) {
+                    if (user instanceof Manager) {
                         ManagerView managerView = new ManagerView();
-                        managerView.viewPortal((Manager)user);
+                        managerView.viewPortal((Manager) user);
                     }
                     break;
-                case "3":
+                case SALES_EXECUTIVE:
                     loginCredentials = UtilUserInput.getSignInDetails();
                     authentication = new SalesExecutiveAuthenticator();
                     user = authentication.authenticate(loginCredentials);
-                    if(user instanceof SalesExecutive) {
+                    if (user instanceof SalesExecutive) {
                         SalesExecutiveView salesExecutiveView = new SalesExecutiveView();
-                        salesExecutiveView.viewPortal((SalesExecutive)user);
+                        salesExecutiveView.viewPortal((SalesExecutive) user);
                     }
                     break;
-                case "4":
+                case CUSTOMER:
                     System.out.println("1.Sign Up\n2.Sign In");
                     switch (sc.nextLine()) {
                         case "1":
@@ -136,18 +89,18 @@ public class BikeBookingManagement {
                             loginCredentials = UtilUserInput.getSignInDetails();
                             authentication = new CustomerAuthenticator();
                             user = authentication.authenticate(loginCredentials);
-                            if(user instanceof Customer) {
+                            if (user instanceof Customer) {
                                 CustomerView customerView = new CustomerView();
-                                customerView.viewPortal((Customer)user);
+                                customerView.viewPortal((Customer) user);
                             }
                         default:
                             System.out.println("Enter valid number!!");
                     }
                     break;
-                case "5":
+                case EXIT:
                     System.out.println("Console Closing !!!");
                     return;
-                default:
+                case DEFAULT:
                     System.out.println("Enter valid Number");
             }
         } catch (Exception e) {
@@ -155,8 +108,9 @@ public class BikeBookingManagement {
         }
         mainLoop();
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         BikeBookingManagement bikeBookingManagement = new BikeBookingManagement();
-            bikeBookingManagement.mainLoop();
+        bikeBookingManagement.mainLoop();
     }
 }

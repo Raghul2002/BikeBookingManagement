@@ -4,20 +4,18 @@ import bbm.manager.BikeManagerController;
 import bbm.utility.UtilUserInput;
 
 import bbm.model.account.*;
-import bbm.model.interfaces.IPortal;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class OwnerView implements IPortal {
+public class OwnerView {
     OwnerController ownerController = new OwnerController();
     BikeManagerController bikeManager = new BikeManagerController();
     Scanner sc = new Scanner(System.in);
 
-    public void viewPortal(User user) {
+    public void viewPortal(Owner owner) {
 
         System.out.println("--------------------Welcome to Owner Portal---------------------------");
-        Owner owner = (Owner) user;
         whileLoop:
         while (true) {
             System.out.println("1.Add Manager\n2.Add Sales Executive\n3.Remove Manager\n4.Remove Sales Executive\n5.View Manager Details\n6.View Sales Man Details\n7.View Customer Details\n8.View Bike Details\n9.View Sold Details\n10.View Personal Details\n11.View Sold Bike Details\n12.Logout");
