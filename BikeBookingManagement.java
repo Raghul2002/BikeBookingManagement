@@ -16,15 +16,16 @@ import bbm.utility.UtilUserInput;
 import java.util.List;
 import java.util.Scanner;
 
+enum EnumUserTypes {
+    OWNER,
+    MANAGER,
+    SALES_EXECUTIVE,
+    CUSTOMER,
+    EXIT,
+    DEFAULT
+}
+
 public class BikeBookingManagement {
-    enum EnumUserTypes {
-        OWNER,
-        MANAGER,
-        SALES_EXECUTIVE,
-        CUSTOMER,
-        EXIT,
-        DEFAULT
-    }
 
     static {
         IDatabase db = Database.getInstance();
