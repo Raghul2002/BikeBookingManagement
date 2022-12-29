@@ -49,13 +49,13 @@ public class SalesExecutiveController {
         return eBikeManagerController.addOrderDetails(orderDetails);
     }
 
-    public void addCustomer(HashMap<EnumUserDetails, Object> details) {
-        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
-        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
-        String userName = (String) details.get(EnumUserDetails.USER_NAME);
-        String password = (String) details.get(EnumUserDetails.PASSWORD);
-        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
-        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
+    public void addCustomer(HashMap<EnumUserDetails, String> details) {
+        String firstName = details.get(EnumUserDetails.FIRST_NAME);
+        String lastName =  details.get(EnumUserDetails.LAST_NAME);
+        String userName =  details.get(EnumUserDetails.USER_NAME);
+        String password =  details.get(EnumUserDetails.PASSWORD);
+        String emailId =  details.get(EnumUserDetails.EMAIL_ID);
+        String phoneNo =  details.get(EnumUserDetails.PHONE_NO);
         Customer customer = new Customer(firstName, lastName, userName, password, emailId, phoneNo);
         dataManager.addUser(customer);
     }

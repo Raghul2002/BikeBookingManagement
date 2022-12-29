@@ -1,10 +1,9 @@
 package bbm.model.account;
 
 public abstract class User {
-    private final String firstName,lastName, userName, password,emailId;
-    private final long phoneNo;
+    private final String firstName,lastName, userName, password,emailId,phoneNo;
 
-    public User(String firstName, String lastName, String userName, String password, String emailId, long phoneNo) {
+    public User(String firstName, String lastName, String userName, String password, String emailId, String phoneNo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -33,7 +32,7 @@ public abstract class User {
         return emailId;
     }
 
-    public long getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 }

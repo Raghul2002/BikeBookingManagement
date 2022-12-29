@@ -12,23 +12,23 @@ import java.util.List;
 
 public class OwnerController {
     IDataManager dataManager = new DataManager();
-    protected void addManager(Owner owner, HashMap<EnumUserDetails, Object> details) {
-        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
-        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
-        String userName = (String) details.get(EnumUserDetails.USER_NAME);
-        String password = (String) details.get(EnumUserDetails.PASSWORD);
-        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
-        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
+    protected void addManager(Owner owner, HashMap<EnumUserDetails, String> details) {
+        String firstName =  details.get(EnumUserDetails.FIRST_NAME);
+        String lastName =  details.get(EnumUserDetails.LAST_NAME);
+        String userName =  details.get(EnumUserDetails.USER_NAME);
+        String password =  details.get(EnumUserDetails.PASSWORD);
+        String emailId =  details.get(EnumUserDetails.EMAIL_ID);
+        String phoneNo =  details.get(EnumUserDetails.PHONE_NO);
         Manager manager = new Manager(firstName, lastName, userName, password, emailId, phoneNo);
         dataManager.addUser(manager);
     }
-    protected void addSalesExecutive(Owner owner,HashMap<EnumUserDetails, Object> details) {
-        String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
-        String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
-        String userName = (String) details.get(EnumUserDetails.USER_NAME);
-        String password = (String) details.get(EnumUserDetails.PASSWORD);
-        String emailId = (String) details.get(EnumUserDetails.EMAIL_ID);
-        Long phoneNo = (Long) details.get(EnumUserDetails.PHONE_NO);
+    protected void addSalesExecutive(Owner owner,HashMap<EnumUserDetails, String> details) {
+        String firstName =  details.get(EnumUserDetails.FIRST_NAME);
+        String lastName =  details.get(EnumUserDetails.LAST_NAME);
+        String userName =  details.get(EnumUserDetails.USER_NAME);
+        String password =  details.get(EnumUserDetails.PASSWORD);
+        String emailId =  details.get(EnumUserDetails.EMAIL_ID);
+        String phoneNo =  details.get(EnumUserDetails.PHONE_NO);
         SalesExecutive salesExecutive = new SalesExecutive(firstName, lastName, userName, password, emailId, phoneNo);
         dataManager.addUser(salesExecutive);
     }

@@ -12,6 +12,7 @@ import bbm.owner.OwnerView;
 import bbm.salesExecutive.SalesExecutiveController;
 import bbm.salesExecutive.SalesExecutiveView;
 import bbm.utility.UtilUserInput;
+import bbm.utility.Validation;
 
 import java.util.List;
 import java.util.Scanner;
@@ -29,10 +30,10 @@ public class BikeBookingManagement {
 
     static {
         IDatabase db = Database.getInstance();
-        db.addUser(new Manager("m", "m", "m", "r", "@gmail", 3456234234L));
-        db.addUser(new Owner("m", "m", "o", "t", "@gmail", 3456234234L));
-        db.addUser(new Customer("m", "m", "c", "h", "@gmail", 3456234234L));
-        db.addUser(new SalesExecutive("m", "m", "s", "x", "@gmail", 3456234234L));
+        db.addUser(new Manager("m", "m", "m", "r", "@gmail", "3456234234L"));
+        db.addUser(new Owner("m", "m", "o", "t", "@gmail", "3456234234L"));
+        db.addUser(new Customer("m", "m", "c", "h", "@gmail", "3456234234L"));
+        db.addUser(new SalesExecutive("m", "m", "s", "x", "@gmail", "3456234234L"));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new EBike(5, 4, 3, 2, 1, "5", "4", "3", "2", 1, 5, 4, 3, 2));

@@ -8,42 +8,63 @@ import java.util.*;
 
 public class UtilUserInput {
     static Scanner sc = new Scanner(System.in);
-    private static String firstName,lastName, userName, password,emailId;
-    private static long phoneNo;
-    private UtilUserInput(){}
+    private static String firstName, lastName, userName, password, emailId, phoneNo;
+
+    private UtilUserInput() {
+    }
 
     private static String getUserNameDetails() {
-        System.out.println("Enter User Name \t:");
-        userName = sc.next();
-        return  userName;
+        do {
+            System.out.println("Enter User Name \t:");
+            userName = sc.next();
+        } while (!Validation.validateString(userName));
+        return userName;
     }
-    private static String getPasswordDetails(){
+
+    private static String getPasswordDetails() {
         IEncryption encryption = new Encryption();
         System.out.println("Enter Password \t:");
         password = sc.next();
         password = encryption.encryptPassword(password);
         return password;
     }
-    private static String getFirstNameDetails(){
-        System.out.println("Enter First Name \t:");
-        firstName = sc.next();
+
+    private static String getFirstNameDetails() {
+        do {
+            System.out.println("Enter First Name \t:");
+            firstName = sc.next();
+        } while (!Validation.validateString(firstName));
+
         return firstName;
     }
-    private static String getLastNameDetails(){
-        System.out.println("Enter Last Name \t:");
-        lastName = sc.next();
+
+    private static String getLastNameDetails() {
+        do {
+            System.out.println("Enter Last Name \t:");
+            lastName = sc.next();
+        } while (!Validation.validateString(lastName));
+
         return lastName;
     }
-    private static String getEmailIdDetails(){
-        System.out.println("Enter Email \t:");
-        emailId = sc.next();
+
+    private static String getEmailIdDetails() {
+        do {
+            System.out.println("Enter Email \t:");
+            emailId = sc.next();
+        } while (!Validation.validateEmail(emailId));
         return emailId;
+
     }
-    private static long getPhoneNoDetails(){
-        System.out.println("Enter Phone number \t:");
-        phoneNo = sc.nextLong();
+
+    private static String getPhoneNoDetails() {
+        do {
+            System.out.println("Enter Phone number \t:");
+            phoneNo = sc.next();
+        } while (!Validation.validatePhoneNo(phoneNo));
+
         return phoneNo;
     }
+
     public static List<String> getSignInDetails() {
         getUserNameDetails();
         getPasswordDetails();
@@ -52,20 +73,21 @@ public class UtilUserInput {
         details.add(password);
         return details;
     }
-    public static HashMap<EnumUserDetails,Object> getSignUpDetails() {
+
+    public static HashMap<EnumUserDetails, String> getSignUpDetails() {
         System.out.println("Enter sign up details :");
-        HashMap<EnumUserDetails,Object> details=new HashMap<>();
+        HashMap<EnumUserDetails, String> details = new HashMap<>();
         getFirstNameDetails();
         getLastNameDetails();
         getSignInDetails();
         getEmailIdDetails();
         getPhoneNoDetails();
-        details.put(EnumUserDetails.FIRST_NAME,firstName);
-        details.put(EnumUserDetails.LAST_NAME,lastName);
-        details.put(EnumUserDetails.USER_NAME,userName);
-        details.put(EnumUserDetails.PASSWORD,password);
-        details.put(EnumUserDetails.EMAIL_ID,emailId);
-        details.put(EnumUserDetails.PHONE_NO,phoneNo);
+        details.put(EnumUserDetails.FIRST_NAME, firstName);
+        details.put(EnumUserDetails.LAST_NAME, lastName);
+        details.put(EnumUserDetails.USER_NAME, userName);
+        details.put(EnumUserDetails.PASSWORD, password);
+        details.put(EnumUserDetails.EMAIL_ID, emailId);
+        details.put(EnumUserDetails.PHONE_NO, phoneNo);
         return details;
     }
 }
