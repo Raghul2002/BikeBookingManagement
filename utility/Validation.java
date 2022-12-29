@@ -26,4 +26,11 @@ public class Validation {
         String regex = "[a-z0-9]+@[a-z]+\\.[a-z]{2,3}$";
         return validate(regex,email);
     }
+    public static boolean validateNumber(String num,int length){
+        String regex = "[0-9]$";
+        if(validate(regex,num)) {
+            return Integer.parseInt(num) <= length;
+        }
+        return false;
+    }
 }

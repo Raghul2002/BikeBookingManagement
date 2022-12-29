@@ -23,7 +23,6 @@ enum EnumUserTypes {
     SALES_EXECUTIVE,
     CUSTOMER,
     EXIT,
-    DEFAULT
 }
 
 public class BikeBookingManagement {
@@ -42,22 +41,20 @@ public class BikeBookingManagement {
 
     private void mainLoop() {
         User user;
-        int num;
-        EnumUserTypes userType = EnumUserTypes.DEFAULT;
+        String val;
+        EnumUserTypes userType;
         IUserAuthentication authentication;
         SalesExecutiveController salesExecutive = new SalesExecutiveController();
         Scanner sc = new Scanner(System.in);
         try {
-            for (int i = 0; i < EnumUserTypes.values().length - 1; i++) {
+            for (int i = 0; i < EnumUserTypes.values().length; i++) {
                 System.out.println(i + 1 + "." + EnumUserTypes.values()[i]);
             }
-            System.out.println("Enter number :");
-            num = Integer.parseInt(sc.nextLine());
-            for (EnumUserTypes type : EnumUserTypes.values()) {
-                if (type.ordinal() == num - 1) {
-                    userType = type;
-                }
-            }
+            do {
+                System.out.println("Enter number :");
+                val = sc.nextLine();
+            } while (!Validation.validateNumber(val, EnumUserTypes.values().length));
+            userType = EnumUserTypes.values()[Integer.parseInt(val) - 1];
             switch (userType) {
                 case OWNER:
                     List<String> loginCredentials = UtilUserInput.getSignInDetails();
@@ -107,8 +104,6 @@ public class BikeBookingManagement {
                 case EXIT:
                     System.out.println("Console Closing !!!");
                     return;
-                case DEFAULT:
-                    System.err.println("Enter valid Number");
             }
         } catch (Exception e) {
             System.out.println("Error " + e);
