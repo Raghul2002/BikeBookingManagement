@@ -2,6 +2,7 @@ package bbm.manager;
 
 import bbm.model.account.Manager;
 import bbm.utility.UtilBikeInput;
+import bbm.utility.Validation;
 
 import java.util.Scanner;
 
@@ -11,7 +12,6 @@ enum EnumManagerPortal {
     VIEW_BIKE,
     VIEW_PERSONAL_DETAILS,
     LOGOUT,
-    DEFAULT
 }
 public class ManagerView {
 
@@ -25,18 +25,16 @@ public class ManagerView {
         System.out.println("--------------------Welcome to manager Portal---------------------------");
         whileLoop:
         while (true) {
-            int option;
-            EnumManagerPortal enumManager = EnumManagerPortal.DEFAULT;
-            for (int i = 0; i < EnumManagerPortal.values().length - 1; i++) {
+            String option;
+            EnumManagerPortal enumManager ;
+            for (int i = 0; i < EnumManagerPortal.values().length; i++) {
                 System.out.println(i + 1 + "." + EnumManagerPortal.values()[i]);
             }
-            System.out.println("Enter number :");
-            option = Integer.parseInt(sc.nextLine());
-            for (EnumManagerPortal type : EnumManagerPortal.values()) {
-                if (type.ordinal() == option - 1) {
-                    enumManager = type;
-                }
-            }
+            do {
+                System.out.println("Enter number :");
+                option = sc.nextLine();
+            }while(!Validation.validateNumber(option,EnumManagerPortal.values().length));
+            enumManager = EnumManagerPortal.values()[Integer.parseInt(option)];
             switch (enumManager) {
                 case ADD_BIKE:
                     System.out.println("1.Add Mechanical Bike\n2.Add Electronic Bike");
@@ -84,8 +82,6 @@ public class ManagerView {
                     break;
                 case LOGOUT:
                     break whileLoop;
-                case DEFAULT:
-                    System.err.println("Enter Valid Number");
             }
         }
     }

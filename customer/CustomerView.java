@@ -5,6 +5,7 @@ import bbm.manager.BikeManagerController;
 import bbm.model.account.Customer;
 import bbm.salesExecutive.SalesExecutiveController;
 import bbm.utility.UtilBikeInput;
+import bbm.utility.Validation;
 
 import java.util.Scanner;
 
@@ -13,8 +14,7 @@ enum EnumCustomerPortal {
     COMPARE_BIKE,
     BUY_BIKE,
     VIEW_PERSONAL_DETAILS,
-    LOGOUT,
-    DEFAULT
+    LOGOUT
 }
 public class CustomerView {
 
@@ -27,18 +27,16 @@ public class CustomerView {
         System.out.println("--------------------Welcome to customer Portal---------------------------");
         whileLoop:
         while (true) {
-            int option;
-            EnumCustomerPortal enumCustomer = EnumCustomerPortal.DEFAULT;
+            String option;
+            EnumCustomerPortal enumCustomer;
             for (int i = 0; i < EnumCustomerPortal.values().length - 1; i++) {
                 System.out.println(i + 1 + "." + EnumCustomerPortal.values()[i]);
             }
-            System.out.println("Enter number :");
-            option = Integer.parseInt(sc.nextLine());
-            for (EnumCustomerPortal type : EnumCustomerPortal.values()) {
-                if (type.ordinal() == option - 1) {
-                    enumCustomer = type;
-                }
-            }
+            do {
+                System.out.println("Enter number :");
+                option = sc.nextLine();
+            }while (!Validation.validateNumber(option,EnumCustomerPortal.values().length));
+            enumCustomer = EnumCustomerPortal.values()[Integer.parseInt(option)];
             switch (enumCustomer) {
                 case VIEW_BIKE:
                     bikeManager.viewAvailableBike();
@@ -59,8 +57,6 @@ public class CustomerView {
                     break;
                 case LOGOUT:
                     break whileLoop;
-                case DEFAULT:
-                    System.err.println("Enter Valid Number");
             }
         }
     }
