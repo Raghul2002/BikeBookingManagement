@@ -2,6 +2,7 @@ package bbm.salesExecutive;
 
 import bbm.manager.BikeManagerController;
 import bbm.model.account.SalesExecutive;
+import bbm.utility.Validation;
 
 import java.util.Scanner;
 
@@ -12,7 +13,6 @@ public class SalesExecutiveView {
         CONFIRM_BOOKING,
         VIEW_PERSONAL_DETAILS,
         LOGOUT,
-        DEFAULT
     }
 
     Scanner sc = new Scanner(System.in);
@@ -22,18 +22,16 @@ public class SalesExecutiveView {
     public void viewPortal(SalesExecutive salesExecutive) {
         salesExecutiveWhile:
         while (true) {
-            int option;
-            EnumSalesExecutivePortal enumSalesExecutive = EnumSalesExecutivePortal.DEFAULT;
-            for (int i = 0; i < EnumSalesExecutivePortal.values().length - 1; i++) {
+            String option;
+            EnumSalesExecutivePortal enumSalesExecutive;
+            for (int i = 0; i < EnumSalesExecutivePortal.values().length; i++) {
                 System.out.println(i + 1 + "." + EnumSalesExecutivePortal.values()[i]);
             }
-            System.out.println("Enter number :");
-            option = Integer.parseInt(sc.nextLine());
-            for (EnumSalesExecutivePortal type : EnumSalesExecutivePortal.values()) {
-                if (type.ordinal() == option - 1) {
-                    enumSalesExecutive = type;
-                }
-            }
+            do {
+                System.out.println("Enter number :");
+                option = sc.nextLine();
+            } while (!Validation.validateNumber(option, EnumSalesExecutivePortal.values().length));
+            enumSalesExecutive = EnumSalesExecutivePortal.values()[Integer.parseInt(option)];
             switch (enumSalesExecutive) {
                 case VIEW_BIKE:
                     bikeManager.viewAvailableBike();
@@ -49,8 +47,6 @@ public class SalesExecutiveView {
                     break;
                 case LOGOUT:
                     break salesExecutiveWhile;
-                case DEFAULT:
-                    System.err.println("Enter Valid Number");
             }
         }
     }

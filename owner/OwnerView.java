@@ -4,6 +4,7 @@ import bbm.manager.BikeManagerController;
 import bbm.utility.UtilUserInput;
 
 import bbm.model.account.*;
+import bbm.utility.Validation;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,6 @@ public class OwnerView {
         VIEW_PERSONAL_DETAILS,
         VIEW_SOLD_BIKE_DETAIL,
         LOGOUT,
-        DEFAULT
     }
 
     OwnerController ownerController = new OwnerController();
@@ -34,18 +34,16 @@ public class OwnerView {
         System.out.println("--------------------Welcome to Owner Portal---------------------------");
         whileLoop:
         while (true) {
-            int option;
-            EnumOwnerPortal enumOwner = EnumOwnerPortal.DEFAULT;
-            for (int i = 0; i < EnumOwnerPortal.values().length - 1; i++) {
+            String option;
+            EnumOwnerPortal enumOwner;
+            for (int i = 0; i < EnumOwnerPortal.values().length ; i++) {
                 System.out.println(i + 1 + "." + EnumOwnerPortal.values()[i]);
             }
-            System.out.println("Enter number :");
-            option = Integer.parseInt(sc.nextLine());
-            for (EnumOwnerPortal type : EnumOwnerPortal.values()) {
-                if (type.ordinal() == option - 1) {
-                    enumOwner = type;
-                }
-            }
+            do{
+                System.out.println("Enter number :");
+                option = sc.next();
+            }while(!Validation.validateNumber(option,EnumOwnerPortal.values().length));
+            enumOwner = EnumOwnerPortal.values()[Integer.parseInt(option)];
             switch (enumOwner) {
                 case ADD_MANAGER:
                     System.out.println("Enter Manager Details :");
@@ -110,8 +108,6 @@ public class OwnerView {
                     break;
                 case LOGOUT:
                     break whileLoop;
-                case DEFAULT:
-                    System.err.println("Enter Valid Number");
             }
         }
     }
