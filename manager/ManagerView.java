@@ -1,6 +1,5 @@
 package bbm.manager;
 
-import bbm.customer.CustomerView;
 import bbm.model.account.Manager;
 import bbm.utility.UtilBikeInput;
 
@@ -12,7 +11,7 @@ enum EnumManagerPortal {
     VIEW_BIKE,
     VIEW_PERSONAL_DETAILS,
     LOGOUT,
-    DEFAULT;
+    DEFAULT
 }
 public class ManagerView {
 

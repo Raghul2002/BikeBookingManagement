@@ -5,6 +5,7 @@ import bbm.enumPackage.EnumUserDetails;
 import bbm.manager.EBikeManagerController;
 import bbm.manager.MBikeManagerController;
 import bbm.model.DataManager;
+import bbm.model.OrderDetails;
 import bbm.model.account.Customer;
 import bbm.model.account.SalesExecutive;
 import bbm.utility.UserView.UtilSalesExecutiveView;
@@ -17,18 +18,6 @@ public class SalesExecutiveController {
     DataManager dataManager = new DataManager();
     EBikeManagerController eBikeManagerController = new EBikeManagerController();
     MBikeManagerController mBikeManagerController = new MBikeManagerController();
-    public void confirmBooking() {
-//        for (SoldDetails i : dataManager.getSoldDetailsList()) {
-//            if(i.getSalesExecutiveId() == 0) {
-//                List<SoldDetails> soldDetailsList = dataManager.getSoldDetailsList();
-//                int indexNo = soldDetailsList.indexOf(i);
-//                SoldDetails soldDetails = SoldDetails.builder().setSalesExecutiveId(salesExecutiveId).setBikeId(i.getBikeId()).setCustomerId(i.getCustomerId()).build();
-//                setBikeStatus(i.getBikeId(), BikeStatus.SOLD.toString());
-//                dataManager.setBooking(soldDetails,indexNo);
-//            }
-//        }
-    }
-
     public void compareBike(List<Integer> bikeDetails) {
         if (bikeDetails.get(1).equals(bikeDetails.get(2)))
             System.out.println("Enter valid comparison!! You are comparing same bike ");
@@ -51,12 +40,12 @@ public class SalesExecutiveController {
         userList.add(salesExecutive);
         UtilSalesExecutiveView.showSalesExecutiveDetails(userList);
     }
-    public void buyBike(int customerId, EnumBikeTypes bikeType,int bikeId) {
-//        if (OwnerModel.buyBike(bikeId)) {
-//            //SoldDetails.addBookingDetails(bikeId, customerId);
-//            System.out.println("Thank you for Booking ! \nYour Bike will be delivered");
-//        } else
-//            System.out.println("The Bike ID you entered does not exist !!! Try Again");
+    public boolean buyBike(int customerId, int bikeId, EnumBikeTypes bikeType) {
+        OrderDetails orderDetails = new OrderDetails(bikeId, customerId);
+        if(bikeType.equals(EnumBikeTypes.MECHANICAL_BIKE)) {
+            return mBikeManagerController.addOrderDetails(orderDetails);
+        }
+        return eBikeManagerController.addOrderDetails(orderDetails);
     }
     public void addCustomer(HashMap<EnumUserDetails, Object> details){
         String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);

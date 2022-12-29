@@ -1,13 +1,13 @@
 package bbm.model;
 
-public class SoldDetails {
-    private int bikeId, customerId, salesExecutiveId;
-
-    public SoldDetails(int bikeId, int customerId, int salesExecutiveId) {
+public class OrderDetails {
+    private final int bikeId, customerId;
+    private int salesExecutiveId;
+    public OrderDetails(int bikeId, int customerId) {
         this.bikeId = bikeId;
         this.customerId = customerId;
-        this.salesExecutiveId = salesExecutiveId;
     }
+
     public int getBikeId() {
         return bikeId;
     }
@@ -18,5 +18,8 @@ public class SoldDetails {
 
     public int getSalesExecutiveId() {
         return salesExecutiveId;
+    }
+    public void setSalesExecutiveId(int salesExecutiveId){
+        this.salesExecutiveId = salesExecutiveId;
     }
 }

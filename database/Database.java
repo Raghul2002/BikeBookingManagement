@@ -1,6 +1,6 @@
 package bbm.database;
 
-import bbm.model.SoldDetails;
+import bbm.model.OrderDetails;
 import bbm.model.account.Customer;
 import bbm.model.account.Owner;
 import bbm.model.account.SalesExecutive;
@@ -28,7 +28,7 @@ public class Database implements IDatabase {
     final private List<Customer> customerList = new ArrayList<>();
     final private List<EBike> eBikeList = new ArrayList<>();
     final private List<MBike> mBikeList = new ArrayList<>();
-    final private List<SoldDetails> soldDetailsList = new ArrayList<>();
+    final private List<OrderDetails> orderDetailsList = new ArrayList<>();
 
 
     public void addUser(Owner owner) {
@@ -109,18 +109,11 @@ public class Database implements IDatabase {
         return mBikeList;
     }
 
-    public void addOrderDetails(SoldDetails soldDetails) {
-        soldDetailsList.add(soldDetails);
+    public void addOrderDetails(OrderDetails orderDetails) {
+        orderDetailsList.add(orderDetails);
     }
 
-    public List<SoldDetails> getSoldDetailsList() {
-        return soldDetailsList;
+    public List<OrderDetails> getOrderDetailsList() {
+        return orderDetailsList;
     }
-
-    @Override
-    public void setBooking(SoldDetails soldDetails, int indexNo) {
-
-    }
-
-
 }

@@ -9,10 +9,10 @@ public class SalesExecutiveView {
     enum EnumSalesExecutivePortal {
         VIEW_BIKE,
         VIEW_BIKE_ORDERS,
-        ADD_BOOKING,
+        CONFIRM_BOOKING,
         VIEW_PERSONAL_DETAILS,
         LOGOUT,
-        DEFAULT;
+        DEFAULT
     }
 
     Scanner sc = new Scanner(System.in);
@@ -41,8 +41,8 @@ public class SalesExecutiveView {
                 case VIEW_BIKE_ORDERS:
                     bikeManager.viewReservedBike(salesExecutive);
                     break;
-                case ADD_BOOKING:
-                    //salesExecutiveController.confirmBooking();
+                case CONFIRM_BOOKING:
+                    bikeManager.confirmBikeBooking(salesExecutive);
                     break;
                 case VIEW_PERSONAL_DETAILS:
                     salesExecutiveController.showPersonalDetails(salesExecutive);

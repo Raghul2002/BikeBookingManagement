@@ -104,17 +104,17 @@ public class DataManager implements IDataManager {
     }
 
     @Override
-    public void addOrderDetails(SoldDetails soldDetails) {
-
+    public void addOrderDetails(OrderDetails orderDetails) {
+        db.addOrderDetails(orderDetails);
     }
 
     @Override
-    public List<SoldDetails> getSoldDetailsList() {
-        return null;
+    public List<OrderDetails> getOrderDetailsList() {
+        return db.getOrderDetailsList();
     }
 
     @Override
-    public void setBooking(SoldDetails soldDetails, int indexNo) {
+    public void setBooking(OrderDetails orderDetails, int indexNo) {
 
     }
 

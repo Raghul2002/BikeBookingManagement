@@ -1,6 +1,7 @@
 package bbm.manager;
 
 import bbm.model.DataManager;
+import bbm.model.OrderDetails;
 import bbm.model.account.Manager;
 import bbm.model.bike.Bike;
 import bbm.model.bike.BikeStatus;
@@ -34,7 +35,7 @@ public class MBikeManagerController implements IBikeManager {
         return false;
     }
 
-    public void viewBike(String bikeStatus){
+    public void viewBike(BikeStatus bikeStatus){
         List<MBike> mBikeList = dataManager.getMBikeList();
         List<MBike> mBikes = new ArrayList<>();
         for(MBike bike:mBikeList){
@@ -43,6 +44,7 @@ public class MBikeManagerController implements IBikeManager {
         }
         UtilBikeView.printMBikeList(mBikes);
     }
+
 
     @Override
     public void compareBike(int bikeId1, int bikeId2) {
@@ -54,4 +56,17 @@ public class MBikeManagerController implements IBikeManager {
         }
         UtilBikeView.printMBikeList(mBikes);
     }
+    public boolean addOrderDetails(OrderDetails orderDetails){
+        for (Bike bike : dataManager.getMBikeList())
+            if (orderDetails.getBikeId() == bike.getBikeId()) {
+                dataManager.addOrderDetails(orderDetails);
+                setBikeStatus(bike,BikeStatus.RESERVED);
+                return true;
+            }
+        return false;
+    }
+    public void setBikeStatus(Bike bike, BikeStatus bikeStatus){
+        bike.setAvailabilityStatus(bikeStatus);
+    }
+
 }

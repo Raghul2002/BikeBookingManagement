@@ -16,7 +16,6 @@ enum EnumCustomerPortal {
     LOGOUT,
     DEFAULT
 }
-
 public class CustomerView {
 
     Scanner sc = new Scanner(System.in);
@@ -49,8 +48,10 @@ public class CustomerView {
                     break;
                 case BUY_BIKE:
                     EnumBikeTypes bikeType = bikeManager.getBikeType();
-                    int bikeId = bikeManager.getBikeId(bikeType);
-                    salesExecutive.buyBike(customer.getCustomerId(), bikeType, bikeId);
+                    if(salesExecutive.buyBike(customer.getCustomerId(), bikeManager.getBikeId(bikeType),bikeType))       //TO check bike in data
+                        System.out.println("Bike is registered to your name");
+                    else
+                        System.out.println("Enter valid Bike Id");
                     break;
                 case VIEW_PERSONAL_DETAILS:
                     customerController.showPersonalDetails(customer);

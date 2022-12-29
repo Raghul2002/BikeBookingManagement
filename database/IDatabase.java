@@ -1,6 +1,6 @@
 package bbm.database;
 
-import bbm.model.SoldDetails;
+import bbm.model.OrderDetails;
 import bbm.model.account.Customer;
 import bbm.model.account.Manager;
 import bbm.model.account.Owner;
@@ -30,8 +30,7 @@ public interface IDatabase {
     List<Owner> getOwnerList();
     List<EBike> getEBikeList();
     List<MBike> getMBikeList();
-    void addOrderDetails(SoldDetails soldDetails);
-    List<SoldDetails> getSoldDetailsList();
-    void setBooking(SoldDetails soldDetails,int indexNo);
+    void addOrderDetails(OrderDetails orderDetails);
+    List<OrderDetails> getOrderDetailsList();
 
 }

@@ -4,7 +4,7 @@ public class Bike {
     private static int id = 1;
     private final int bikeId, topSpeed, groundClearance, wheelBase, maxTorque, price;
     private final String bikeModel, bodyType, instrumentConsole, seatType;
-    private String availabilityStatus = BikeStatus.AVAILABLE.toString();
+    private BikeStatus availabilityStatus = BikeStatus.AVAILABLE;
 
     public Bike(int topSpeed, int groundClearance, int wheelBase, int maxTorque, int price, String bikeModel, String bodyType, String instrumentConsole, String seatType) {
         this.bikeId = id;
@@ -60,5 +60,9 @@ public class Bike {
     public String getSeatType() {
         return seatType;
     }
-    public String getAvailabilityStatus(){return availabilityStatus;}
+    public BikeStatus getAvailabilityStatus(){return availabilityStatus;}
+
+    public void setAvailabilityStatus(BikeStatus availabilityStatus) {
+        this.availabilityStatus = availabilityStatus;
+    }
 }

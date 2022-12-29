@@ -100,7 +100,7 @@ public class OwnerView {
                     bikeManager.viewAvailableBike();
                     break;
                 case VIEW_SOLD_DETAILS:
-                    //bikeManager.viewSoldBike(owner);
+                    bikeManager.viewSoldDetails(owner);
                     break;
                 case VIEW_PERSONAL_DETAILS:
                     ownerController.showPersonalDetails(owner);
