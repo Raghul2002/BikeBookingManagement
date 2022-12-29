@@ -29,10 +29,10 @@ public class BikeBookingManagement {
 
     static {
         IDatabase db = Database.getInstance();
-        db.addUser(new Manager("m", "m", "m", "r", "@gmail", "3456234234L"));
-        db.addUser(new Owner("m", "m", "o", "t", "@gmail", "3456234234L"));
-        db.addUser(new Customer("m", "m", "c", "h", "@gmail", "3456234234L"));
-        db.addUser(new SalesExecutive("m", "m", "s", "x", "@gmail", "3456234234L"));
+        db.addUser(new Manager("m", "m", "manager", "r", "@gmail", "3456234234L"));
+        db.addUser(new Owner("m", "m", "owner", "t", "@gmail", "3456234234L"));
+        db.addUser(new Customer("m", "m", "customer", "h", "@gmail", "3456234234L"));
+        db.addUser(new SalesExecutive("m", "m", "sales", "x", "@gmail", "3456234234L"));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new MBike(1, 2, 3, 4, 5, "1", "2", "3", "4", 5, 1, "2", "3", "4", "5", "3"));
         db.addBike(new EBike(5, 4, 3, 2, 1, "5", "4", "3", "2", 1, 5, 4, 3, 2));
