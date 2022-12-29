@@ -17,7 +17,12 @@ import java.util.List;
 import java.util.Scanner;
 
 enum EnumUserTypes {
-    OWNER, MANAGER, SALES_EXECUTIVE, CUSTOMER, EXIT, DEFAULT
+    OWNER,
+    MANAGER,
+    SALES_EXECUTIVE,
+    CUSTOMER,
+    EXIT,
+    DEFAULT
 }
 
 public class BikeBookingManagement {

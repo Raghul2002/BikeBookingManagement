@@ -18,36 +18,38 @@ public class SalesExecutiveController {
     DataManager dataManager = new DataManager();
     EBikeManagerController eBikeManagerController = new EBikeManagerController();
     MBikeManagerController mBikeManagerController = new MBikeManagerController();
-    public void compareBike(List<Integer> bikeDetails) {
+
+    public boolean compareBike(List<Integer> bikeDetails) {
         if (bikeDetails.get(1).equals(bikeDetails.get(2)))
-            System.out.println("Enter valid comparison!! You are comparing same bike ");
-        else
-            switch (bikeDetails.get(0)) {
-                case 1:
-                    System.out.println("Mechanical Bikes  :");
-                    mBikeManagerController.compareBike(bikeDetails.get(1),bikeDetails.get(2));
-                    break;
-                case 2:
-                    System.out.println("Electrical Bikes  :");
-                    eBikeManagerController.compareBike(bikeDetails.get(1),bikeDetails.get(2));
-                    break;
-                default:
-                    System.out.println("Enter valid input!!!");
-            }
+            return false;
+        switch (bikeDetails.get(0)) {
+            case 1:
+                mBikeManagerController.compareBike(bikeDetails.get(1), bikeDetails.get(2));
+                break;
+            case 2:
+                eBikeManagerController.compareBike(bikeDetails.get(1), bikeDetails.get(2));
+                break;
+            default:
+                return false;
+        }
+        return true;
     }
-    protected void showPersonalDetails(SalesExecutive salesExecutive){
+
+    protected void showPersonalDetails(SalesExecutive salesExecutive) {
         List<SalesExecutive> userList = new ArrayList<>();
         userList.add(salesExecutive);
         UtilSalesExecutiveView.showSalesExecutiveDetails(userList);
     }
+
     public boolean buyBike(int customerId, int bikeId, EnumBikeTypes bikeType) {
         OrderDetails orderDetails = new OrderDetails(bikeId, customerId);
-        if(bikeType.equals(EnumBikeTypes.MECHANICAL_BIKE)) {
+        if (bikeType.equals(EnumBikeTypes.MECHANICAL_BIKE)) {
             return mBikeManagerController.addOrderDetails(orderDetails);
         }
         return eBikeManagerController.addOrderDetails(orderDetails);
     }
-    public void addCustomer(HashMap<EnumUserDetails, Object> details){
+
+    public void addCustomer(HashMap<EnumUserDetails, Object> details) {
         String firstName = (String) details.get(EnumUserDetails.FIRST_NAME);
         String lastName = (String) details.get(EnumUserDetails.LAST_NAME);
         String userName = (String) details.get(EnumUserDetails.USER_NAME);

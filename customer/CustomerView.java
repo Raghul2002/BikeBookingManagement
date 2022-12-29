@@ -44,7 +44,8 @@ public class CustomerView {
                     bikeManager.viewAvailableBike();
                     break;
                 case COMPARE_BIKE:
-                    salesExecutive.compareBike(UtilBikeInput.getBikesIdToCompare());
+                    if(!salesExecutive.compareBike(UtilBikeInput.getBikesIdToCompare()))
+                        System.out.println("Enter valid input!!!");
                     break;
                 case BUY_BIKE:
                     EnumBikeTypes bikeType = bikeManager.getBikeType();

@@ -51,7 +51,7 @@ public class MBikeManagerController implements IBikeManager {
         List<MBike> mBikeList = dataManager.getMBikeList();
         List<MBike> mBikes = new ArrayList<>();
         for (MBike i : mBikeList) {
-            if (i.getAvailabilityStatus().equals(BikeStatus.AVAILABLE.toString()) && (i.getBikeId() == bikeId1 || i.getBikeId() == bikeId2))
+            if (i.getAvailabilityStatus().equals(BikeStatus.AVAILABLE) && (i.getBikeId() == bikeId1 || i.getBikeId() == bikeId2))
                 mBikes.add(i);
         }
         UtilBikeView.printMBikeList(mBikes);
