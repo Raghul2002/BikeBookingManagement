@@ -97,6 +97,7 @@ public class BikeBookingManagement {
                                 CustomerView customerView = new CustomerView();
                                 customerView.viewPortal((Customer) user);
                             }
+                            break;
                         default:
                             System.out.println("Enter valid number!!");
                     }

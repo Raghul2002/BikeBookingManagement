@@ -31,7 +31,7 @@ public class SalesExecutiveView {
                 System.out.println("Enter number :");
                 option = sc.nextLine();
             } while (!Validation.validateNumber(option, EnumSalesExecutivePortal.values().length));
-            enumSalesExecutive = EnumSalesExecutivePortal.values()[Integer.parseInt(option)];
+            enumSalesExecutive = EnumSalesExecutivePortal.values()[Integer.parseInt(option)-1];
             switch (enumSalesExecutive) {
                 case VIEW_BIKE:
                     bikeManager.viewAvailableBike();

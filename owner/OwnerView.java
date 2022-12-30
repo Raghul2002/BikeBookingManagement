@@ -1,6 +1,9 @@
 package bbm.owner;
 
 import bbm.manager.BikeManagerController;
+import bbm.utility.UserView.UtilCustomerView;
+import bbm.utility.UserView.UtilManagerView;
+import bbm.utility.UserView.UtilSalesExecutiveView;
 import bbm.utility.UtilUserInput;
 
 import bbm.model.account.*;
@@ -36,21 +39,22 @@ public class OwnerView {
         while (true) {
             String option;
             EnumOwnerPortal enumOwner;
-            for (int i = 0; i < EnumOwnerPortal.values().length ; i++) {
+            for (int i = 0; i < EnumOwnerPortal.values().length; i++) {
                 System.out.println(i + 1 + "." + EnumOwnerPortal.values()[i]);
             }
-            do{
+            do {
                 System.out.println("Enter number :");
-                option = sc.next();
-            }while(!Validation.validateNumber(option,EnumOwnerPortal.values().length));
-            enumOwner = EnumOwnerPortal.values()[Integer.parseInt(option)];
+                option = sc.nextLine();
+                System.out.println(option);
+            } while (!Validation.validateNumber(option, EnumOwnerPortal.values().length));
+            enumOwner = EnumOwnerPortal.values()[Integer.parseInt(option) - 1];
             switch (enumOwner) {
                 case ADD_MANAGER:
-                    System.out.println("Enter Manager Details :");
+                    System.out.println("Enter Manager Details ");
                     ownerController.addManager(owner, UtilUserInput.getSignUpDetails());
                     break;
                 case ADD_SALES_EXECUTIVE:
-                    System.out.println("Enter Sales Executive Details :");
+                    System.out.println("Enter Sales Executive Details ");
                     ownerController.addSalesExecutive(owner, UtilUserInput.getSignUpDetails());
                     break;
                 case REMOVE_MANAGER:
@@ -69,30 +73,15 @@ public class OwnerView {
                     break;
                 case VIEW_MANAGER_DETAILS:
                     List<Manager> managerList = ownerController.getManagerList();
-                    if (!managerList.isEmpty()) {
-                        System.out.println("Manager Details :");
-                        for (Manager i : managerList) {
-                            System.out.println(i);
-                        }
-                    } else System.out.println("Sorry !!\nCurrently no managers registered");
+                    UtilManagerView.showManagerDetails(managerList);
                     break;
                 case VIEW_SALES_EXECUTIVE_DETAILS:
                     List<SalesExecutive> salesExecutiveList = ownerController.getSalesExecutiveList();
-                    if (!salesExecutiveList.isEmpty()) {
-                        System.out.println("Manager Details :");
-                        for (SalesExecutive i : salesExecutiveList) {
-                            System.out.println(i);
-                        }
-                    } else System.out.println("Sorry !!\nCurrently no sales executive registered");
+                    UtilSalesExecutiveView.showSalesExecutiveDetails(salesExecutiveList);
                     break;
                 case VIEW_CUSTOMER_DETAILS:
                     List<Customer> customerList = ownerController.getCustomerList();
-                    if (!customerList.isEmpty()) {
-                        System.out.println("Manager Details :");
-                        for (Customer i : customerList) {
-                            System.out.println(i);
-                        }
-                    } else System.out.println("Sorry !!\nCurrently no customer registered");
+                    UtilCustomerView.showCustomerDetails(customerList);
                     break;
                 case VIEW_BIKE_DETAILS:
                     bikeManager.viewAvailableBike();
@@ -107,6 +96,7 @@ public class OwnerView {
                     bikeManager.viewSoldBike(owner);
                     break;
                 case LOGOUT:
+                    System.out.println("Logged out successfully !!");
                     break whileLoop;
             }
         }

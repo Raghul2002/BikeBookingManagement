@@ -34,7 +34,7 @@ public class ManagerView {
                 System.out.println("Enter number :");
                 option = sc.nextLine();
             }while(!Validation.validateNumber(option,EnumManagerPortal.values().length));
-            enumManager = EnumManagerPortal.values()[Integer.parseInt(option)];
+            enumManager = EnumManagerPortal.values()[Integer.parseInt(option)-1];
             switch (enumManager) {
                 case ADD_BIKE:
                     System.out.println("1.Add Mechanical Bike\n2.Add Electronic Bike");

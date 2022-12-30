@@ -29,14 +29,14 @@ public class CustomerView {
         while (true) {
             String option;
             EnumCustomerPortal enumCustomer;
-            for (int i = 0; i < EnumCustomerPortal.values().length - 1; i++) {
+            for (int i = 0; i < EnumCustomerPortal.values().length; i++) {
                 System.out.println(i + 1 + "." + EnumCustomerPortal.values()[i]);
             }
             do {
                 System.out.println("Enter number :");
                 option = sc.nextLine();
             }while (!Validation.validateNumber(option,EnumCustomerPortal.values().length));
-            enumCustomer = EnumCustomerPortal.values()[Integer.parseInt(option)];
+            enumCustomer = EnumCustomerPortal.values()[Integer.parseInt(option)-1];
             switch (enumCustomer) {
                 case VIEW_BIKE:
                     bikeManager.viewAvailableBike();
